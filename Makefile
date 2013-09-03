@@ -10,3 +10,4 @@ all:
 clean:
 	rm -rf analyzer/build
 	rm -rf capture/build
+	cd gui-qt && $(MAKE) clean
