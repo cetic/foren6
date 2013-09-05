@@ -6,3 +6,6 @@ To get started:
     git submodule init
     git submodule update
     make
+
+On MACOS-X with Fink, run the following command :
+    make QMAKE_QT4=/sw/lib/qt4-mac/bin/qmake CFLAGS=-m32
