@@ -8,7 +8,8 @@ submodules:
 	git submodule update
 
 check-tshark:
-	@if [ `which tshark` -eq ""]; then \
+        #ugly HACK
+	@if [ "$$(which tshark)0" = "0" ]; then \
 	    echo "tshark must be installed in order to use this tool."; \
 	    exit 1; \
 	fi
