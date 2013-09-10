@@ -1,7 +1,11 @@
 QMAKE_QT4=qmake-qt4
 MODE=debug
 
-all: check-tshark build setup-capture-links
+all: submodules check-tshark build setup-capture-links
+
+submodules:
+	git submodule init
+	git submodule update
 
 check-tshark:
 	@if [ `which tshark` -eq ""]; then \
