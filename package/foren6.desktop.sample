@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Foren6
+Name[vi]=Foren6
+GenericName=6LoWPAN Network Diagnosis Tool
+GenericName[en_GB]=6LoWPAN Network Diagnosis Tool
+GenericName[fr]=Analyseur de réseau 6LoWPAN
+Comment=6LoWPAN Network Visualization and Diagnosis Tool
+Exec=foren6
+Terminal=false
+MimeType=application/vnd.tcpdump.pcap;
+# Categorie entry according to version 1.0 of
+# http://www.freedesktop.org/wiki/Specifications/menu-spec
+Categories=GNOME;Network;
+Encoding=UTF-8

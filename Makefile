@@ -36,6 +36,19 @@ clean:
 run: all
 	cd gui-qt && LD_LIBRARY_PATH=../analyzer/dist/Debug/GNU-Linux-x86 $(MODE)/foren6
 
+install: install-linux
+
+install-linux: all
+	mkdir -p bin
+	rm -f bin/run-foren6
+	echo "#!/bin/bash" >> bin/run-foren6
+	echo "LD_LIBRARY_PATH=$$(pwd)/analyzer/dist/Debug/GNU-Linux-x86 $$(pwd)/gui-qt/release/foren6" >> bin/run-foren6
+	chmod +x bin/run-foren6
+	ln -sf $$(readlink -f bin/run-foren6) /usr/bin/foren6
+	cp package/foren6.desktop.sample package/foren6.desktop
+	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> package/foren6.desktop
+	sudo mv package/foren6.desktop /usr/share/applications
+
 help:
 	@echo "Usage: $(MAKE) [ MODE=<mode> ] <target> [ <target> ... ]"
 	@echo "Where:"
