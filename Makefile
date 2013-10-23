@@ -19,7 +19,7 @@ build:
 	cd analyzer/build && cmake .. -DCMAKE_BUILD_TYPE=$(MODE) && $(MAKE)
 	mkdir -p capture/build
 	cd capture/build && cmake .. -DCMAKE_BUILD_TYPE=$(MODE) && $(MAKE)
-	cd gui-qt && $(QMAKE_QT4) rpl_diagnosis_tool.pro && $(MAKE) $(MODE)
+	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) $(MODE)
 
 setup-capture-links:
 	mkdir -p gui-qt/$(MODE)
@@ -34,7 +34,7 @@ clean:
 	cd gui-qt && $(MAKE) clean
 
 run: all
-	cd gui-qt && LD_LIBRARY_PATH=../analyzer/dist/Debug/GNU-Linux-x86 $(MODE)/rpl_diagnosis_tool
+	cd gui-qt && LD_LIBRARY_PATH=../analyzer/dist/Debug/GNU-Linux-x86 $(MODE)/foren6
 
 help:
 	@echo "Usage: $(MAKE) [ MODE=<mode> ] <target> [ <target> ... ]"
