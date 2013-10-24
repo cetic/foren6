@@ -38,7 +38,7 @@ run: all
 
 install: install-linux
 
-install-linux: all
+install-linux:
 	mkdir -p bin
 	rm -f bin/run-foren6
 	echo "#!/bin/bash" >> bin/run-foren6
