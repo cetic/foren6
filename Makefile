@@ -1,5 +1,5 @@
 QMAKE_QT4=qmake-qt4
-MODE=debug
+MODE:=debug
 
 all: submodules check-tshark build setup-capture-links
 
