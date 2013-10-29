@@ -9,3 +9,7 @@ To get started:
 
 On MACOS-X with Fink, run the following command :
     make QMAKE_QT4=/sw/lib/qt4-mac/bin/qmake CFLAGS=-m32
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cetic/foren6/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
