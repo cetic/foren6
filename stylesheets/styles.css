@@ -82,6 +82,12 @@ p#abstract {
   text-justify:inter-word;
 }
 
+.narrow {
+  margin-top:10px;
+  margin-left:40px;
+  margin-right:40px;
+}
+
 p#text  {
   padding-top:0px;
   padding-bottom:10px;

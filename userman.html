@@ -82,17 +82,46 @@
          <p class="justified">By default, <strong>mote positions</strong> are unknown to Foren6, and the application doesn't attempt to use RSSI or time-based techniques to calculate the mote positions (Foren6 is not a localization tool). Instead, motes appear at arbitrary positions inside the Network Visualizer and obey to two simple rules to form a tree: motes attract each other if they form a child-parent relationship, and repell otherwise. This technique was inspired from the Contiki Collect View application. To avoid unwanted movement, each mote can be individually <strong>pinned</strong> to a particular position in the window by clicking the mouse wheel on the mote, or selecting lock/unlock when right-clicking the mote. A global setting can toggle the node movement altogether, using the <strong>Toggle Node Movement</strong> button in the taskbar. In all situations, motes can be individually <strong>displaced</strong> with a drag &amp; drop.<center>
          <img src="images/userman/toggle-mvt-btn.png"/>
          </center></p>
-         
-        <h2 class="install">Network Visualizer Overlays</h2>  
-          <h3 class="userman">Normal Overlay</h3>
+        <h3 class="install">Layouts</h3>
+          <p class="justified">The Network Visualizer can be customized using <strong>Layouts</strong>. With layouts, the user can specifiy <strong>predefined mote positions</strong> inside the Network Visualizer for some or all motes, and load a <strong>background image</strong>. A layout can be constructed within the application itself, by pinning motes to desired positions and loading an optional background from the <strong>Layout Menu</strong>. From the Layout Menu, the current layout can be exported to a configuration file for future use. You can also create layouts by editing a layout file manually following this example layout:
+          <pre class="narrow">[General]
+background=
+scale=1.2
+
+[12740100010101]
+x=0
+y=0
+locked=true
+
+[12740200020202]
+x=0
+y=50
+locked=true
+
+...etc</pre>The Foren6 sources provide a few example layouts. Below (left), is a screenshot of the layout <strong>example-layout-grid-3x6.ini</strong> while replaying a COOJA simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout' from the Layout Menu.</p>
+        <center>
+        <img src="images/userman/layout-double-grid.png"/>
+        </center>
+        <h3 class="install">Overlays</h3>
+        <p class="justified"><strong>Overlays</strong> allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the <strong>Toggle Node Info</strong> button.</p>
+        <center>
+        <img src="images/userman/toggle-info-btn.png"/>
+        </center>
+          <h4 class="userman">Normal Overlay</h4>
           The default overlay 
-          <h3 class="userman">Dodags Overlay</h3>
-          <h3 class="userman">RPL Instance Overlay</h3>
-          <h3 class="userman">Node Traffic Overlay</h3>
-          <h3 class="userman">Max DAO Interval Overlay</h3>
-          <h3 class="userman">Max DIO Interval Overlay</h3>
-          <h3 class="userman">Errors Overlays</h3>
-        
+          <h4 class="userman">Dodags Overlay</h4>
+          <h4 class="userman">RPL Instance Overlay</h4>
+          <h4 class="userman">Node Traffic Overlay</h4>
+          <p class="justified">The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the RGB color 0x000000 (black) to the mote with the highest number of packets, and 0xefefef (very light grey) to the mote which sent the least amount of traffic.</p> An example is shown below, in a network where mote 17 sends a constant stream of ICMP Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
+          
+        <center>
+        <img src="images/userman/overlay-nodetraffic-withinfo.png"/>
+        </center>
+          
+          <h4 class="userman">Max DAO Interval Overlay</h4>
+          <h4 class="userman">Max DIO Interval Overlay</h4>
+          <h4 class="userman">Errors Overlays</h4>
+
         <h2 class="install">Replaying PCAPs</h2>
         
         <h2 class="install">Multiple Sniffers</h2>
