@@ -98,10 +98,21 @@ x=0
 y=50
 locked=true
 
-...etc</pre>The Foren6 sources provide a few example layouts. Below (left), is a screenshot of the layout <strong>example-layout-grid-3x6.ini</strong> while replaying a COOJA simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout' from the Layout Menu.</p>
+...etc</pre>The Foren6 sources provide a few example layouts. The following 3 examples can be reproduced from the samples contained in the example folder.</p>
+
+        <h4 class="install">Layout Example 1: Grid Topology</h4> 
+
+        <p class="justified">Below (left), is a screenshot of the layout <strong>example-layout-grid-3x6.ini</strong> while replaying a COOJA simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout' from the Layout Menu.</p>
         <center>
         <img src="images/userman/layout-double-grid.png"/>
         </center>
+        
+        <h4 class="install">Layout Example 2: Building walls with real sensor locations</h4>
+        <p class="justified">todo: show CETIC testbed layout</p>
+        
+        <h4 class="install">Layout Example 3: Sensor images for a demo</h4> 
+        <p class="justified">todo: show CETIC JDL demo layout</p>
+        
         <h3 class="install">Overlays</h3>
         <p class="justified"><strong>Overlays</strong> allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the <strong>Toggle Node Info</strong> button.</p>
         <center>
@@ -110,23 +121,32 @@ locked=true
           <h4 class="userman">Normal Overlay</h4>
           The default overlay 
           <h4 class="userman">Dodags Overlay</h4>
+          In the <strong>Dodags</strong> overlay, motes are assigned a fixed color based on their DODAG ID. This ID is a RPL-related parameter uniquement identifying a DODAG by the global IP address of its root.
           <h4 class="userman">RPL Instance Overlay</h4>
+          <p class="justified">Foren6 currently supports instances in a limited way: nodes from different instances will be displayed in different colors in this overlay, but the application is not yet compatible with motes participating in multiple instances simultaneously (nor does Contiki support that at the moment).</p>
           <h4 class="userman">Node Traffic Overlay</h4>
-          <p class="justified">The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the RGB color 0x000000 (black) to the mote with the highest number of packets, and 0xefefef (very light grey) to the mote which sent the least amount of traffic.</p> An example is shown below, in a network where mote 17 sends a constant stream of ICMP Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
-          
+          <p class="justified">The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the RGB color 0x000000 (black) to the mote with the highest number of packets, and a light grey to the mote which sent the least amount of traffic (gradually closer to white (0xFFFFF) as the scale size increases).</p>
+          <p class="justified">An example is shown below, in a network where mote 17 sends a constant stream of ICMP Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
         <center>
         <img src="images/userman/overlay-nodetraffic-withinfo.png"/>
         </center>
-          
-          <h4 class="userman">Max DAO Interval Overlay</h4>
-          <h4 class="userman">Max DIO Interval Overlay</h4>
+          <p class="justified">This overlay turns out to be very useful to identify highly-sollicited nodes in the network, which is important to monitor if the sensors are running on batteries.</p>
+          <h4 class="userman">Max DAO/DIO Interval Overlays</h4>
+          <p class="justified">The next two overlays define a greyscale coloring based on the maximum interval between two successive DAOs and DIOs heard from each mote.</p>
           <h4 class="userman">Errors Overlays</h4>
-
+          <p class="justified">A series of <strong>Error Overlays</strong> detects incoherent network states/messages and uses a red scale to locate them on the topology. The different errors currently displayed are:
+        <ul id="foren6links">
+          <li>Rank errors</li>
+          <li>Routing loop errors</li>
+          <li>IP mismatch errors in DAO destination</li>
+          <li>DODAG mismatch errors in DAO</li>
+        </ul></p>
+        <h4 class="userman">Parent/Child Highlighting</h4>
+          <p class="justified">Finally, a <strong>Parent/Child Highlighting</strong> overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.</p>
         <h2 class="install">Replaying PCAPs</h2>
-        
+        <p class="justified">todo</p>
         <h2 class="install">Multiple Sniffers</h2>
-        
-        <h2 class="install">Multiple Sniffers</h2>
+        <p class="justified">todo</p>
       </section>
 
       <footer>
