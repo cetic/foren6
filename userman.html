@@ -45,13 +45,24 @@
         <center>
         <h1>Foren6 User Manual</h1>
         </center>
-        <h2 class="install">Getting Started</h2>
-            <h3 class="userman">Anatomy </h3>
+        <h2 class="install">Anatomy</h2>
                 <p class="justified">Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below.</p>
                 <img src="images/userman/foren6-anatomy-basic.png"/>
                 <p class="justified">The main window can be extended with <strong>dockable widgets</strong>, providing optional information. The <strong>Event Widget</strong> lists the history of all the events which occurred since the start. An event can be a new packet or a change in a node or network state detected by the internal analyzer. A filter field allows to narrow down the list of events to a particular type. The <strong>Packet Dissector</strong> lists the full packet info when a packet is selected in the Event Widget. The dissection is based on <a href="http://www.wireshark.org/docs/man-pages/tshark.html">tshark</a>, and is thus similar to <a href="http://www.wireshark.org/">Wireshark</a>. The dockable widgets can be added through the 'Window' menu, and their position is persitent after the application is closed.</p> 
                 <img src="images/userman/foren6-anatomy-docks.png"/>
-            <h3 class="userman">Connecting a sniffer</h3>
+        <h2 class="install">Connecting a sniffer device</h2>
+            Foren6 supports three types of sniffer devices.
+            <ul class="bold">
+              <li><strong>Any Contiki-compatible mote</strong> with a USB connector. Any Contiki mote can serve as a sniffer, provided is it programmed with a specific Contiki application developed by Daniele Alessandrelli. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.</li>
+              <li><strong>Commercial sniffers which generate PCAPs</strong>. We have extensively tested Microchip's ZENA network analyzer, but any source capable of streaming to a PCAP is compatible.</li>
+              <li><strong>The rzusbstick by Atmel</strong> (coming soon).</li>
+            </ul>
+            <p class="justified">To configure an input device, click the 'Manage Sources' button or select it from the 'File' menu.</p>
+            <center><img src="images/userman/manage-sources-btn.png"/></center>
+            <p class="justified">The manage sources dialog allow to select different source types. Below, we cover the specific details for each category of sniffer devices.</p> 
+            <h3 class="userman">Contiki-compatible motes</h2>
+                <p class="justified">For a Contiki mote flashed with <a href="https://github.com/cetic/sniffer154">the sniffer154 firmware</a>, specify the <strong>target device</strong>, desired <strong>802.15.4 channel</strong> and set the <strong>type</strong> option to <strong>snif</strong>.</p> 
+                <center><img src="images/userman/manage-sources-sniffer.png"/></center>
       </section>
 
       <footer>
