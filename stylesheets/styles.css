@@ -5,6 +5,7 @@ body {
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#504E4E;
   font-weight:300;
+  overflow-y:scroll;
 }
 
 .column1-wrap{
@@ -52,6 +53,7 @@ body {
 
 #logo {
   margin-top: -40px;
+  max-width: 200px;
 }
 
 h1, h2, h3, h4, h5, h6 {
