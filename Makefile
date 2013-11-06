@@ -39,15 +39,11 @@ run: all
 install: install-linux
 
 install-linux:
-	mkdir -p bin
-	rm -f bin/run-foren6
-	echo "#!/bin/bash" >> bin/run-foren6
-	echo "LD_LIBRARY_PATH=$$(pwd)/analyzer/dist/Debug/GNU-Linux-x86 $$(pwd)/gui-qt/release/foren6" >> bin/run-foren6
-	chmod +x bin/run-foren6
-	ln -sf $$(readlink -f bin/run-foren6) /usr/bin/foren6
-	cp package/foren6.desktop.sample package/foren6.desktop
-	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> package/foren6.desktop
-	sudo mv package/foren6.desktop /usr/share/applications
+	install package/foren6.desktop.sample $(DESTDIR)/foren6.desktop
+	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> $(DESTDIR)/foren6.desktop
+	install gui-qt/release/foren6 $(DESTDIR)
+	install capture/bin/lib* $(DESTDIR)
+	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)
 
 help:
 	@echo "Usage: $(MAKE) [ MODE=<mode> ] <target> [ <target> ... ]"
