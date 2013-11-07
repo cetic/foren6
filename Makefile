@@ -49,7 +49,7 @@ install-linux:
 	install -d $(DESTDIR)/usr/share/docs/foren6/layouts
 	install -d $(DESTDIR)/usr/share/docs/foren6/pcaps
 	install -d $(DESTDIR)/usr/share/docs/foren6/icons
-	install res/icons/* $(DESTDIR)/usr/share/docs/foren6/icons
+	install package/foren6-48-alpha.png $(DESTDIR)/usr/share/docs/foren6/icons
 	install examples/layouts/* $(DESTDIR)/usr/share/docs/foren6/layouts
 	install examples/pcaps/* $(DESTDIR)/usr/share/docs/foren6/pcaps
 	echo "Icon=$$(readlink -f $(DESTDIR)/usr/share/docs/foren6/icons/foren6-48-alpha.png)" >> $(DESTDIR)/usr/share/applications/foren6.desktop
