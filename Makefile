@@ -31,7 +31,7 @@ setup-capture-links:
 clean:
 	rm -rf analyzer/build
 	rm -rf capture/build
-	cd gui-qt && $(MAKE) clean
+	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
 
 run: all
 	cd gui-qt && LD_LIBRARY_PATH=../analyzer/dist/Debug/GNU-Linux-x86 $(MODE)/foren6
