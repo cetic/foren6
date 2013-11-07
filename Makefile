@@ -31,7 +31,7 @@ setup-capture-links:
 clean:
 	rm -rf analyzer/build
 	rm -rf capture/build
-	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
+	cd gui-qt && $(MAKE) clean
 
 run: all
 	cd gui-qt && LD_LIBRARY_PATH=../analyzer/dist/Debug/GNU-Linux-x86 $(MODE)/foren6
@@ -46,6 +46,7 @@ install-linux:
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)
 
 pre-package: submodules clean
+	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
 
 help:
 	@echo "Usage: $(MAKE) [ MODE=<mode> ] <target> [ <target> ... ]"
