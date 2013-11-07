@@ -41,7 +41,9 @@ install: install-linux
 install-linux:
 	install package/foren6.desktop.sample $(DESTDIR)/foren6.desktop
 	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> $(DESTDIR)/foren6.desktop
+	install -d $(DESTDIR)/bin
 	install gui-qt/release/foren6 $(DESTDIR)/bin
+	install -d $(DESTDIR)/usr/lib
 	install capture/bin/lib* $(DESTDIR)/usr/lib
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)/usr/lib
 
