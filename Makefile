@@ -43,8 +43,8 @@ install-linux:
 	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> $(DESTDIR)/foren6.desktop
 	install -d $(DESTDIR)/bin
 	install gui-qt/release/foren6 $(DESTDIR)/bin
-	install -d $(DESTDIR)/usr/lib
-	install capture/bin/lib* $(DESTDIR)/usr/lib
+	install -d $(DESTDIR)/usr/lib/foren6/interfaces
+	install capture/bin/lib* $(DESTDIR)/usr/lib/foren6/interfaces
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)/usr/lib
 
 pre-package: submodules
