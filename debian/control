@@ -1,0 +1,18 @@
+Source: foren6
+Section: net
+Priority: extra
+Maintainer: Sébastien Dawans, Laurent Deru <foren6@cetic.be>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: http://cetic.github.io/foren6
+Vcs-Git: https://github.com/cetic/foren6.git
+Vcs-Browser: https://github.com/cetic/foren6
+
+Package: foren6
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: 6LoWPAN Diagnosis Tool
+ Foren6 is a non-intrusive 6LoWPAN Diagnosis Tool based
+ on IEEE-802.15.4 sniffers. The 6LoWPAN network administrator
+ can visualize the network state and faults via a graphical
+ user interface.
