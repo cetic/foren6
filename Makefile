@@ -46,8 +46,10 @@ install-linux:
 	install -d $(DESTDIR)/usr/lib/foren6/interfaces
 	install capture/bin/lib* $(DESTDIR)/usr/lib/foren6/interfaces
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)/usr/lib
-	install -d $(DESTDIR)/usr/share/docs/foren6
-	install examples/* $(DESTDIR)/usr/share/docs/foren6
+	install -d $(DESTDIR)/usr/share/docs/foren6/layouts
+	install -d $(DESTDIR)/usr/share/docs/foren6/pcaps
+	install examples/layouts/* $(DESTDIR)/usr/share/docs/foren6/layouts
+	install examples/pcaps/* $(DESTDIR)/usr/share/docs/foren6/pcaps
 
 pre-package: submodules
 	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
