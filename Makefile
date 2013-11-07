@@ -39,8 +39,8 @@ run: all
 install: install-linux
 
 install-linux:
-	install package/foren6.desktop.sample $(DESTDIR)/foren6.desktop
-	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> $(DESTDIR)/foren6.desktop
+	install -d $(DESTDIR)/usr/share/applications
+	install package/foren6.desktop.sample $(DESTDIR)/usr/share/applications/foren6.desktop
 	install -d $(DESTDIR)/bin
 	install gui-qt/release/foren6 $(DESTDIR)/bin
 	install -d $(DESTDIR)/usr/lib/foren6/interfaces
@@ -48,8 +48,11 @@ install-linux:
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)/usr/lib
 	install -d $(DESTDIR)/usr/share/docs/foren6/layouts
 	install -d $(DESTDIR)/usr/share/docs/foren6/pcaps
+	install -d $(DESTDIR)/usr/share/docs/foren6/icons
+	install res/icons/* $(DESTDIR)/usr/share/docs/foren6/icons
 	install examples/layouts/* $(DESTDIR)/usr/share/docs/foren6/layouts
 	install examples/pcaps/* $(DESTDIR)/usr/share/docs/foren6/pcaps
+	echo "Icon=$$(readlink -f $(DESTDIR)/usr/share/docs/foren6/icons/foren6-48-alpha.png)" >> $(DESTDIR)/usr/share/applications/foren6.desktop
 
 pre-package: submodules
 	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
