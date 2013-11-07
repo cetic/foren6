@@ -41,11 +41,11 @@ install: install-linux
 install-linux:
 	install package/foren6.desktop.sample $(DESTDIR)/foren6.desktop
 	echo "Icon=$$(readlink -f gui-qt/resources/logo/foren6-48-alpha.png)" >> $(DESTDIR)/foren6.desktop
-	install gui-qt/release/foren6 $(DESTDIR)
-	install capture/bin/lib* $(DESTDIR)
-	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)
+	install gui-qt/release/foren6 $(DESTDIR)/bin
+	install capture/bin/lib* $(DESTDIR)/usr/lib
+	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)/usr/lib
 
-pre-package: submodules clean
+pre-package: submodules
 	cd gui-qt && $(QMAKE_QT4) foren6.pro && $(MAKE) clean
 
 help:
