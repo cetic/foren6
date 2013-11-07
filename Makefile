@@ -45,6 +45,8 @@ install-linux:
 	install capture/bin/lib* $(DESTDIR)
 	install analyzer/dist/Debug/GNU-Linux-x86/lib* $(DESTDIR)
 
+pre-package: submodules clean
+
 help:
 	@echo "Usage: $(MAKE) [ MODE=<mode> ] <target> [ <target> ... ]"
 	@echo "Where:"
