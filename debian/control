@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/cetic/foren6
 
 Package: foren6
 Architecture: any
-Depends: tshark, ${shlibs:Depends}, ${misc:Depends}
+Depends: tshark, libqt4-core, libqt4-gui, libexpat1, libstdc++6, libpcap0.8, libglib2.0-0,  ${shlibs:Depends}, ${misc:Depends}
 Description: 6LoWPAN Diagnosis Tool
  Foren6 is a non-intrusive 6LoWPAN Diagnosis Tool based
  on IEEE-802.15.4 sniffers. The 6LoWPAN network administrator
