@@ -2,7 +2,7 @@ Source: foren6
 Section: net
 Priority: extra
 Maintainer: Sébastien Dawans, Laurent Deru <foren6@cetic.be>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), libqt4-dev, qt4-qmake, cmake, make, libexpat1-dev, tshark, libpcap0.8-dev, libc6-dev, g++, gcc
 Standards-Version: 3.9.3
 Homepage: http://cetic.github.io/foren6
 Vcs-Git: https://github.com/cetic/foren6.git
@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/cetic/foren6
 
 Package: foren6
 Architecture: any
-Depends: libqt4-dev, qt4-qmake, cmake, make, libexpat1-dev, tshark, libpcap-dev, libc6-dev, g++, gcc, ${shlibs:Depends}, ${misc:Depends}
+Depends: tshark, ${shlibs:Depends}, ${misc:Depends}
 Description: 6LoWPAN Diagnosis Tool
  Foren6 is a non-intrusive 6LoWPAN Diagnosis Tool based
  on IEEE-802.15.4 sniffers. The 6LoWPAN network administrator
