@@ -1,0 +1,149 @@
+LINK_TITLE=User Manual
+PAGE_TITLE=Foren6 User Manual
+===//===//===
+h2. GUI Overview
+
+Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A *Network Vizualizer* window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the RPL routing protocol. When clicking on a sensor, a *Node Information* window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the network at the point in time set by a *Scrollable Timeline* at the bottom of the window.
+
+!images/userman/foren6-anatomy-basic.png!
+
+The main window can be extended with *dockable widgets*, providing optional information. The *Event Widget* lists the history of all the events which occurred since the start. An event can be a new packet or a change in a node or network state detected by the internal analyzer. A filter field allows to narrow down the list of events to a particular type. The *Packet Dissector* lists the full packet info when a packet is selected in the Event Widget. The dissection is based on "tshark":http://www.wireshark.org/docs/man-pages/tshark.html, and is thus similar to "Wireshark":http://www.wireshark.org/. The dockable widgets can be added through the 'Window' menu, and their position is persitent after the application is closed.
+
+!images/userman/foren6-anatomy-docks.png!
+
+h2. Live capture with a physical sniffer device
+
+Foren6 can capture live captures from physical 802.15.4 sniffers. We support three types of sniffer hardware:
+
+* *Any Contiki-compatible mote* with a USB connector. Any Contiki mote can serve as a sniffer, provided is it programmed with "a specific Contiki application":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.
+* *Commercial sniffers which generate PCAPs*. We have extensively tested Microchip's ZENA network analyzer, but any source capable of streaming to a PCAP is compatible.
+* *The rzusbstick by Atmel* (coming soon).
+
+To configure an input device, click the 'Manage Sources' button or select it from the 'File' menu.
+
+!images/userman/manage-sources-btn.png!
+
+The manage sources dialog allows to select different source types. Below, we cover the specific details for each category of sniffer devices.
+
+h3. Contiki-compatible motes
+
+For a Contiki mote flashed with "the sniffer154 firmware":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer, specify the *target device*, desired *802.15.4 channel* and set the *type* option to *snif*. For instructions on how to obtain this firmware and flash it on a Contiki mote, refer to "the README file of the sniffer Contiki application":https://github.com/cetic/contiki/blob/sniffer/examples/sniffer/README.md.
+
+!images/userman/manage-sources-sniffer.png!
+
+h3. Commercial 802.15.4 sniffers with a PCAP output
+
+!images/userman/manage-sources-sniffer-pcap.png!
+
+h3. Atmel rzusbstick
+
+Coming soon
+
+h2. Starting a live capture
+
+Once a source has been selected, the 'Start' button will be enabled.
+
+<center>
+!http://cetic.github.io/foren6/images/userman/start-btn.png! !http://cetic.github.io/foren6/images/userman/stop-btn.png!
+</center>
+
+Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order. It is possible to scroll back to a previous state, without interrupting the live capture.
+
+h2. The Network Visualizer
+
+The Network Visualizer window represents the status of the nearby 6LoWPAN networks. We will cover the basic functionalities offered by the Network Visualizer, then introduce site-specific customization using *Layouts* and cover the different *Overlays* available to visualize different types of network-related info.
+
+h3. Basic functionalities
+
+Each 6LoWPAN host is drawn as a circle with a hexadecimal number inside, which is the last two bytes of the mote's MAC address. Motes can be *renamed* at any time by right-clicking them. An alternate name will appear thereafter instead of the hexadecimal ID.
+
+By default, *mote positions* are unknown to Foren6, and the application doesn't attempt to use RSSI or time-based techniques to calculate the mote positions (Foren6 is not a localization tool). Instead, motes appear at arbitrary positions inside the Network Visualizer and obey to two simple rules to form a tree: motes attract each other if they form a child-parent relationship, and repell otherwise. This technique was inspired from the Contiki Collect View application. To avoid unwanted movement, each mote can be individually *pinned* to a particular position in the window by clicking the mouse wheel on the mote, or selecting lock/unlock when right-clicking the mote. A global setting can toggle the node movement altogether, using the *Toggle Node Movement* button in the taskbar. In all situations, motes can be individually *displaced* with a drag & drop.
+
+!images/userman/toggle-mvt-btn.png!
+
+h3. Layouts
+
+The Network Visualizer can be customized using *Layouts*. With layouts, the user can specifiy *predefined mote positions* inside the Network Visualizer for some or all motes, and load a *background image*. A layout can be constructed within the application itself, by pinning motes to desired positions and loading an optional background from the *Layout Menu*. From the Layout Menu, the current layout can be exported to a configuration file for future use. You can also create layouts by editing a layout file manually following this example layout:
+
+<pre><code>[General]
+background=
+scale=1.2
+
+[12740100010101]
+x=0
+y=0
+locked=true
+
+[12740200020202]
+x=0
+y=50
+locked=true
+
+...etc</code></pre>
+
+The Foren6 sources provide a few example layouts. The following 3 examples can be reproduced from the samples contained in the example folder.
+
+h4. Layout Example 1: Grid Topology
+
+Below (left), is a screenshot of the layout *example-layout-grid-3x6.ini* while replaying a COOJA simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout' from the Layout Menu.
+
+!images/userman/layout-double-grid.png!
+
+h4. Layout Example 2: Building walls with real sensor locations
+
+!images/userman/testbed-cetic-layout-real.png!
+
+h4. Layout Example 3: Sensor images for a demo
+
+todo: show CETIC JDL demo layout
+
+h3. Overlays
+
+*Overlays* allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the *Toggle Node Info* button.
+
+h4. Normal Overlay
+
+The default overlay
+
+h4. Dodags Overlay
+
+In the *Dodags* overlay, motes are assigned a fixed color based on their DODAG ID. This ID is a RPL-related parameter uniquement identifying a DODAG by the global IP address of its root.
+
+h4. RPL Instance Overlay
+
+Foren6 currently supports instances in a limited way: nodes from different instances will be displayed in different colors in this overlay, but the application is not yet compatible with motes participating in multiple instances simultaneously (nor does Contiki support that at the moment).
+
+h4. Node Traffic Overlay
+
+The *Node Traffic* overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the RGB color 0x000000 (black) to the mote with the highest number of packets, and a light grey to the mote which sent the least amount of traffic (gradually closer to white (0xFFFFF) as the scale size increases).
+
+An example is shown below, in a network where mote 17 sends a constant stream of ICMP Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.
+
+!images/userman/overlay-nodetraffic-withinfo.png!
+
+This overlay turns out to be very useful to identify highly-sollicited nodes in the network, which is important to monitor if the sensors are running on batteries.
+
+h4. Max DAO/DIO Interval Overlays
+
+The next two overlays define a greyscale coloring based on the maximum interval between two successive DAOs and DIOs heard from each mote.
+
+h4. Errors Overlays
+
+A series of *Error Overlays* detects incoherent network states/messages and uses a red scale to locate them on the topology. The different errors currently displayed are:
+
+* Rank errors
+* Routing loop errors
+* IP mismatch errors in DAO destination
+* DODAG mismatch errors in DAO
+
+h4. Parent/Child Highlighting
+
+Finally, a *Parent/Child Highlighting* overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.
+
+h2. Replaying PCAPs
+
+todo
+
+h2. Multiple Sniffers
+
+todo

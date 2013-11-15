@@ -1,0 +1,13 @@
+PAGE_TITLE=Credits
+LINK_TITLE=Credits
+===//===//===
+Foren6 is maintained by "Laurent Deru":https://www.cetic.be/Laurent-Deru and "Sébastien Dawans":https://www.cetic.be/Sebastien-Dawans from CETIC's Embedded & Communication Systems team.
+
+We would like to thank the following people:
+
+* "Alexis Murzeau":mailto:amurzeau@gmail.com?subject=Foren6- from "ESEO Angers":http://www.eseo.fr for developing the initial version of Foren6 during his internship.
+* "Daniele Alessandrelli":https://github.com/alessandrelli from "the Sniffer 15.4 project":http://rtn.sssup.it/index.php/software/seed-eye-apps/sniffer-154 which Foren6 uses to snif with Contiki motes.
+* "Alexandre Devaux":http://linkedin.com/in/adevaux/en from "Université de Mons":http://portail.umons.ac.be for the Android port of Foren6 (still under development).
+* "Ravi Ramdoyal":https://www.cetic.be/Ravi-Ramdoyal for designing the Foren6 logo.
+* The many icon designers (see Help --> About)
+
