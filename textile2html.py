@@ -30,7 +30,6 @@ def format_pre(text):
         newtext = re.sub('|'.join(re.escape(k) for k in format_pre_rules), fn, text[pre_start:pre_end])
         text = text[:pre_start] + newtext + text[pre_end:]
         pre_end = pre_start + len(newtext)
-        print(text)
 
 def postprocessing(text):
     text = format_pre(text)
