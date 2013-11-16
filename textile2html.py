@@ -4,7 +4,7 @@ import textile
 import re
 
 #Ugly hack to force the replacement of the whole middle section in RAW_HTML mode (index.html uses it)
-raw_mode_replace="""      <section class="justified centered narrow">
+raw_mode_replace="""      <section class="justified centered">
         <center>
         <h1>#TEX2HTML_PAGETITLE</h1>
         </center>
