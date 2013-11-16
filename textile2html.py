@@ -26,7 +26,7 @@ def format_pre(text):
         pre_end = text[pre_end:].find('</pre>') + len('</pre>')
         if pre_start == -1 or pre_end == -1:
             return text
-        format_pre_rules = {'<br />':'\n', '<p>':'', '</p>':''}
+        format_pre_rules = {'<br />':'\n', '\t<p>':'', '</p>':''}
         def fn(match):
             return format_pre_rules[match.group()]
         newtext = re.sub('|'.join(re.escape(k) for k in format_pre_rules), fn, text[pre_start:pre_end])
