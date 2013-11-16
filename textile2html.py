@@ -12,6 +12,7 @@ raw_mode_replace="""      <section class="justified centered">
       </section>"""
 
 def links(fulldata):
+    """Build the list of links based on all the pages found and put them in increasing order"""
     links_txt = ''
     for entry in fulldata:
         links_txt += '<li><a href="%s">%s</a></li>\n' % (entry['htmlfile'], entry['options']['LINK_TITLE'])
@@ -57,9 +58,11 @@ def generate(template, sourcedir, outdir):
         else:
             fulldata_entry['htmlcontent'] = postprocessing(textile.textile(contents_parts[1]))
 
-        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[:-8]+'.html')
+        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[4:-8]+'.html')
+        fulldata_entry['order'] = int(textile_file.split('-')[0])
         fulldata.append(fulldata_entry)
     
+    fulldata = sorted(fulldata, key=lambda k: k['order']) 
     links_txt = links(fulldata)
     
     if not os.path.exists(outdir):
