@@ -16,7 +16,9 @@ def links(fulldata):
     """Build the list of links based on all the pages found and put them in increasing order"""
     links_txt = ''
     for entry in fulldata:
-        links_txt += '<li><a href="%s">%s</a></li>\n' % (entry['htmlfile'], entry['options']['LINK_TITLE'])
+        #Only files with the LINK_TITLE option will appear as links in the sidebar
+        if 'LINK_TITLE' in entry['options']:
+            links_txt += '<li><a href="%s">%s</a></li>\n' % (entry['htmlfile'], entry['options']['LINK_TITLE'])
     return links_txt
 
 def format_pre(text):
