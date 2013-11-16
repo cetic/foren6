@@ -33,120 +33,98 @@
           <li><a href="https://github.com/cetic/foren6">View On <strong>GitHub</strong></a></li>
         </ul>
         <ul id="foren6links">
-          <li><a href="install.html">Installation Instructions</a></li>
-          <li><a href="userman.html">User Manual</a></li>
-          <li><a href="http://www.cetic.be">Examples</a></li>
-          <li><a href="credits.html">Credits</a></li>
+          <li><a href="./install.html">Installation Notes</a></li>
+<li><a href="./userman.html">User Manual</a></li>
+<li><a href="./index.html">Home</a></li>
+<li><a href="./credits.html">Credits</a></li>
+
         </ul>
       </header>
       
       
-      <section>
+      <section class="justified centered narrow">
         <center>
         <h1>Foren6 User Manual</h1>
         </center>
-        <h2 class="install">GUI Overview</h2>
-                <p class="justified">Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A <strong>Network Vizualizer</strong> window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the RPL routing protocol. When clicking on a sensor, a <strong>Node Information</strong> window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the network at the point in time set by a <strong>Scrollable Timeline</strong> at the bottom of the window.</p>
-                <img src="images/userman/foren6-anatomy-basic.png"/>
-                <p class="justified">The main window can be extended with <strong>dockable widgets</strong>, providing optional information. The <strong>Event Widget</strong> lists the history of all the events which occurred since the start. An event can be a new packet or a change in a node or network state detected by the internal analyzer. A filter field allows to narrow down the list of events to a particular type. The <strong>Packet Dissector</strong> lists the full packet info when a packet is selected in the Event Widget. The dissection is based on <a href="http://www.wireshark.org/docs/man-pages/tshark.html" target="_blank">tshark</a>, and is thus similar to <a href="http://www.wireshark.org/" target="_blank">Wireshark</a>. The dockable widgets can be added through the 'Window' menu, and their position is persitent after the application is closed.</p> 
-                <img src="images/userman/foren6-anatomy-docks.png"/>
-        <h2 class="install">Live capture with a physical sniffer device</h2>
-            Foren6 can capture live captures from physical 802.15.4 sniffers. We support three types of sniffer hardware:
-            <ul class="bold">
-              <li><strong>Any Contiki-compatible mote</strong> with a USB connector. Any Contiki mote can serve as a sniffer, provided is it programmed with <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer" target="_blank">a specific Contiki application</a>. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.</li>
-              <li><strong>Commercial sniffers which generate PCAPs</strong>. We have extensively tested Microchip's ZENA network analyzer, but any source capable of streaming to a PCAP is compatible.</li>
-              <li><strong>The rzusbstick by Atmel</strong> (coming soon).</li>
-            </ul>
-            <p class="justified">To configure an input device, click the 'Manage Sources' button or select it from the 'File' menu.</p>
-            <center><img src="images/userman/manage-sources-btn.png"/></center>
-            <p class="justified">The manage sources dialog allows to select different source types. Below, we cover the specific details for each category of sniffer devices.</p> 
-            <h3 class="userman">Contiki-compatible motes</h3>
-                <p class="justified">For a Contiki mote flashed with <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer" target="_blank">the sniffer154 firmware</a>, specify the <strong>target device</strong>, desired <strong>802.15.4 channel</strong> and set the <strong>type</strong> option to <strong>snif</strong>. For instructions on how to obtain this firmware and flash it on a Contiki mote, refer to <a href="https://github.com/cetic/contiki/blob/sniffer/examples/sniffer/README.md" target="_blank">the README file of the sniffer Contiki application</a>.</p> 
-                <center><img height = "75%" width="75%" src="images/userman/manage-sources-sniffer.png"/></center>
-            <h3 class="userman">Commercial 802.15.4 sniffers with a PCAP output</h3>
-                <p class="justified">Any sniffer capable of streaming to a PCAP file is compatible with Foren6. To use such a device, fill in the Manage Sources dialog as shown below.</p>
-                <center><img src="images/userman/manage-sources-sniffer-pcap.png"/></center>
-            <h3 class="userman">Atmel rzusbstick</h3>
-                <p class="justified">Coming soon</p>
-        <h2 class="install">Starting a live capture</h2>
-            <p class="justified">Once a source has been selected, the 'Start' button will be enabled.</p>
-            <center>
-            <img src="images/userman/start-btn.png"/>
-            <img src="images/userman/stop-btn.png"/>
-            </center>
-            <p class="justified">Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order. It is possible to scroll back to a previous state, without interrupting the live capture.</p>
-        <h2 class="install">The Network Visualizer</h2>
-        <p class="justified">The Network Visualizer window represents the status of the nearby 6LoWPAN networks. We will cover the basic functionalities offered by the Network Visualizer, then introduce site-specific customization using <strong>Layouts</strong> and cover the different <strong>Overlays</strong> available to visualize different types of network-related info.</p>
-          <h3 class="userman">Basic functionalities</h3>
-         <p class="justified">Each 6LoWPAN host is drawn as a circle with a hexadecimal number inside, which is the last two bytes of the mote's MAC address. Motes can be <strong>renamed</strong> at any time by right-clicking them. An alternate name will appear thereafter instead of the hexadecimal ID.</p>
-         <p class="justified">By default, <strong>mote positions</strong> are unknown to Foren6, and the application doesn't attempt to use RSSI or time-based techniques to calculate the mote positions (Foren6 is not a localization tool). Instead, motes appear at arbitrary positions inside the Network Visualizer and obey to two simple rules to form a tree: motes attract each other if they form a child-parent relationship, and repell otherwise. This technique was inspired from the Contiki Collect View application. To avoid unwanted movement, each mote can be individually <strong>pinned</strong> to a particular position in the window by clicking the mouse wheel on the mote, or selecting lock/unlock when right-clicking the mote. A global setting can toggle the node movement altogether, using the <strong>Toggle Node Movement</strong> button in the taskbar. In all situations, motes can be individually <strong>displaced</strong> with a drag &amp; drop.<center>
-         <img src="images/userman/toggle-mvt-btn.png"/>
-         </center></p>
-        <h3 class="install">Layouts</h3>
-          <p class="justified">The Network Visualizer can be customized using <strong>Layouts</strong>. With layouts, the user can specifiy <strong>predefined mote positions</strong> inside the Network Visualizer for some or all motes, and load a <strong>background image</strong>. A layout can be constructed within the application itself, by pinning motes to desired positions and loading an optional background from the <strong>Layout Menu</strong>. From the Layout Menu, the current layout can be exported to a configuration file for future use. You can also create layouts by editing a layout file manually following this example layout:
-          <pre class="narrow">[General]
+          	<h2><span class="caps">GUI</span> Overview</h2>
+
+	<p>Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A <strong>Network Vizualizer</strong> window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the <span class="caps">RPL</span> routing protocol. When clicking on a sensor, a <strong>Node Information</strong> window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the network at the point in time set by a <strong>Scrollable Timeline</strong> at the bottom of the window.</p>
+
+	<p><img src="images/userman/foren6-anatomy-basic.png" alt="" /></p>
+
+	<p>The main window can be extended with <strong>dockable widgets</strong>, providing optional information. The <strong>Event Widget</strong> lists the history of all the events which occurred since the start. An event can be a new packet or a change in a node or network state detected by the internal analyzer. A filter field allows to narrow down the list of events to a particular type. The <strong>Packet Dissector</strong> lists the full packet info when a packet is selected in the Event Widget. The dissection is based on <a href="http://www.wireshark.org/docs/man-pages/tshark.html">tshark</a>, and is thus similar to <a href="http://www.wireshark.org/">Wireshark</a>. The dockable widgets can be added through the 'Window&#8217; menu, and their position is persitent after the application is closed.</p>
+
+	<p><img src="images/userman/foren6-anatomy-docks.png" alt="" /></p>
+
+	<h2>Live capture with a physical sniffer device</h2>
+
+	<p>Foren6 can capture live captures from physical 802.15.4 sniffers. We support three types of sniffer hardware:</p>
+
+	<ul>
+		<li><strong>Any Contiki-compatible mote</strong> with a <span class="caps">USB</span> connector. Any Contiki mote can serve as a sniffer, provided is it programmed with <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer">a specific Contiki application</a>. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.</li>
+		<li><strong>Commercial sniffers which generate PCAPs</strong>. We have extensively tested Microchip&#8217;s <span class="caps">ZENA</span> network analyzer, but any source capable of streaming to a <span class="caps">PCAP</span> is compatible.</li>
+		<li><strong>The rzusbstick by Atmel</strong> (coming soon).</li>
+	</ul>
+
+	<p>To configure an input device, click the 'Manage Sources&#8217; button or select it from the 'File&#8217; menu.</p>
+
+	<p><img src="images/userman/manage-sources-btn.png" alt="" /></p>
+
+	<p>The manage sources dialog allows to select different source types. Below, we cover the specific details for each category of sniffer devices.</p>
+
+	<h3>Contiki-compatible motes</h3>
+
+	<p>For a Contiki mote flashed with <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer">the sniffer154 firmware</a>, specify the <strong>target device</strong>, desired <strong>802.15.4 channel</strong> and set the <strong>type</strong> option to <strong>snif</strong>. For instructions on how to obtain this firmware and flash it on a Contiki mote, refer to <a href="https://github.com/cetic/contiki/blob/sniffer/examples/sniffer/README.md">the <span class="caps">README</span> file of the sniffer Contiki application</a>.</p>
+
+	<p><img src="images/userman/manage-sources-sniffer.png" alt="" /></p>
+
+	<h3>Commercial 802.15.4 sniffers with a <span class="caps">PCAP</span> output</h3>
+
+	<p><img src="images/userman/manage-sources-sniffer-pcap.png" alt="" /></p>
+
+	<h3>Atmel rzusbstick</h3>
+
+	<p>Coming soon</p>
+
+	<h2>Starting a live capture</h2>
+
+	<p>Once a source has been selected, the 'Start&#8217; button will be enabled.</p>
+
+	<p><center><br /><img src="http://cetic.github.io/foren6/images/userman/start-btn.png" alt="" /> <img src="http://cetic.github.io/foren6/images/userman/stop-btn.png" alt="" /><br /></center></p>
+
+	<p>Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order. It is possible to scroll back to a previous state, without interrupting the live capture.</p>
+
+	<h2>The Network Visualizer</h2>
+
+	<p>The Network Visualizer window represents the status of the nearby 6LoWPAN networks. We will cover the basic functionalities offered by the Network Visualizer, then introduce site-specific customization using <strong>Layouts</strong> and cover the different <strong>Overlays</strong> available to visualize different types of network-related info.</p>
+
+	<h3>Basic functionalities</h3>
+
+	<p>Each 6LoWPAN host is drawn as a circle with a hexadecimal number inside, which is the last two bytes of the mote&#8217;s <span class="caps">MAC</span> address. Motes can be <strong>renamed</strong> at any time by right-clicking them. An alternate name will appear thereafter instead of the hexadecimal ID.</p>
+
+	<p>By default, <strong>mote positions</strong> are unknown to Foren6, and the application doesn&#8217;t attempt to use <span class="caps">RSSI</span> or time-based techniques to calculate the mote positions (Foren6 is not a localization tool). Instead, motes appear at arbitrary positions inside the Network Visualizer and obey to two simple rules to form a tree: motes attract each other if they form a child-parent relationship, and repell otherwise. This technique was inspired from the Contiki Collect View application. To avoid unwanted movement, each mote can be individually <strong>pinned</strong> to a particular position in the window by clicking the mouse wheel on the mote, or selecting lock/unlock when right-clicking the mote. A global setting can toggle the node movement altogether, using the <strong>Toggle Node Movement</strong> button in the taskbar. In all situations, motes can be individually <strong>displaced</strong> with a drag & drop.</p>
+
+	<p><img src="images/userman/toggle-mvt-btn.png" alt="" /></p>
+
+	<h3>Layouts</h3>
+
+	<p>The Network Visualizer can be customized using <strong>Layouts</strong>. With layouts, the user can specifiy <strong>predefined mote positions</strong> inside the Network Visualizer for some or all motes, and load a <strong>background image</strong>. A layout can be constructed within the application itself, by pinning motes to desired positions and loading an optional background from the <strong>Layout Menu</strong>. From the Layout Menu, the current layout can be exported to a configuration file for future use. You can also create layouts by editing a layout file manually following this example layout:</p>
+
+	<p><pre><code>[General]
 background=
 scale=1.2
 
-[12740100010101]
+	[12740100010101]
 x=0
 y=0
 locked=true
 
-[12740200020202]
+	[12740200020202]
 x=0
 y=50
 locked=true
 
-...etc</pre>The Foren6 sources provide a few example layouts. The following 3 examples can be reproduced from the samples contained in the example folder.</p>
-
-        <h4 class="install">Layout Example 1: Grid Topology</h4> 
-
-        <p class="justified">Below (left), is a screenshot of the layout <strong>example-layout-grid-3x6.ini</strong> while replaying a COOJA simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout' from the Layout Menu.</p>
-        <center>
-        <img src="images/userman/layout-double-grid.png"/>
-        </center>
-        
-        <h4 class="install">Layout Example 2: Building walls with real sensor locations</h4>
-        <img src="images/userman/testbed-cetic-layout-real.png"/>
-        
-        <h4 class="install">Layout Example 3: Sensor images for a demo</h4> 
-        <p class="justified">todo: show CETIC JDL demo layout</p>
-        
-        <h3 class="install">Overlays</h3>
-        <p class="justified"><strong>Overlays</strong> allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the <strong>Toggle Node Info</strong> button.</p>
-        <center>
-        <img src="images/userman/toggle-info-btn.png"/>
-        </center>
-          <h4 class="userman">Normal Overlay</h4>
-          The default overlay 
-          <h4 class="userman">Dodags Overlay</h4>
-          In the <strong>Dodags</strong> overlay, motes are assigned a fixed color based on their DODAG ID. This ID is a RPL-related parameter uniquement identifying a DODAG by the global IP address of its root.
-          <h4 class="userman">RPL Instance Overlay</h4>
-          <p class="justified">Foren6 currently supports instances in a limited way: nodes from different instances will be displayed in different colors in this overlay, but the application is not yet compatible with motes participating in multiple instances simultaneously (nor does Contiki support that at the moment).</p>
-          <h4 class="userman">Node Traffic Overlay</h4>
-          <p class="justified">The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the RGB color 0x000000 (black) to the mote with the highest number of packets, and a light grey to the mote which sent the least amount of traffic (gradually closer to white (0xFFFFF) as the scale size increases).</p>
-          <p class="justified">An example is shown below, in a network where mote 17 sends a constant stream of ICMP Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
-        <center>
-        <img src="images/userman/overlay-nodetraffic-withinfo.png"/>
-        </center>
-          <p class="justified">This overlay turns out to be very useful to identify highly-sollicited nodes in the network, which is important to monitor if the sensors are running on batteries.</p>
-          <h4 class="userman">Max DAO/DIO Interval Overlays</h4>
-          <p class="justified">The next two overlays define a greyscale coloring based on the maximum interval between two successive DAOs and DIOs heard from each mote.</p>
-          <h4 class="userman">Errors Overlays</h4>
-          <p class="justified">A series of <strong>Error Overlays</strong> detects incoherent network states/messages and uses a red scale to locate them on the topology. The different errors currently displayed are:
-        <ul id="foren6links">
-          <li>Rank errors</li>
-          <li>Routing loop errors</li>
-          <li>IP mismatch errors in DAO destination</li>
-          <li>DODAG mismatch errors in DAO</li>
-        </ul></p>
-        <h4 class="userman">Parent/Child Highlighting</h4>
-          <p class="justified">Finally, a <strong>Parent/Child Highlighting</strong> overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.</p>
-        <h2 class="install">Replaying PCAPs</h2>
-        <p class="justified">todo</p>
-        <h2 class="install">Multiple Sniffers</h2>
-        <p class="justified">todo</p>
+	...etc</code></pre>
       </section>
 
       <footer>

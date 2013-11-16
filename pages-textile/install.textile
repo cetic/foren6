@@ -1,0 +1,21 @@
+PAGE_TITLE=Installing Foren6
+LINK_TITLE=Installation Notes
+===//===//===
+h2. Linux/MacOS X, from source
+
+<pre>git clone https://github.com/cetic/foren6.git
+cd foren6
+make
+sudo make install</pre>
+
+h2. Linux packages
+
+<pre>...</pre>
+        
+h2. Windows
+
+Coming soon.
+
+h2. Android
+
+Our Android port of Foren6 is not yet available. Stay tuned!
