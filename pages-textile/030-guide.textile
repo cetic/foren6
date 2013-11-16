@@ -1,9 +1,15 @@
 LINK_TITLE=User Manual
-PAGE_TITLE=Foren6 User Manual
+PAGE_TITLE=A Short Guide to Foren6
 ===//===//===
-h2. GUI Overview
+"Why Foren6?":#WHY | "GUI Overview":#GUI | "Packet Sources":#SOURCES | "Network Visualizer":#NETVIS | "Multiple Sniffers":#MULTISNIF | "Get Started":#GETSTARTED
 
-Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A *Network Vizualizer* window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the RPL routing protocol. When clicking on a sensor, a *Node Information* window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the network at the point in time set by a *Scrollable Timeline* at the bottom of the window.
+h2(#WHY). Why Foren6?
+
+Foren6 is an effort to provide a non-intrusive 6LoWPAN network analysis tool. It leverages passive sniffer devices to reconstruct a visual and textual representation of network information to support real-world Internet of Things applications where other means of debug (cabled or network-based monitoring) are too costly or impractical. This guide describes each part of the application and provides useful user information.
+
+h2(#GUI). GUI Overview
+
+Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A *Network Vizualizer* window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the RPL routing protocol. When clicking on a sensor, a *Node Information* window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the perceived network at the point in time set by a *Scrollable Timeline* at the bottom of the window.
 
 !images/userman/foren6-anatomy-basic.png!
 
@@ -11,45 +17,27 @@ The main window can be extended with *dockable widgets*, providing optional info
 
 !images/userman/foren6-anatomy-docks.png!
 
-h2. Live capture with a physical sniffer device
+h2(#SOURCES). Packet Sources
 
-Foren6 can capture live captures from physical 802.15.4 sniffers. We support three types of sniffer hardware:
+Foren6 can be interfaced with 3 types of packet sources: *physical sniffers* on real networks, previously-recorded *packet trace files* and *simulated* networks.
+
+h3. 1. Analysing a real network via physical sniffers
+
+Foren6 can capture live captures from physical 802.15.4 sniffers. It supports three types of sniffer hardware:
 
 * *Any Contiki-compatible mote* with a USB connector. Any Contiki mote can serve as a sniffer, provided is it programmed with "a specific Contiki application":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.
 * *Commercial sniffers which generate PCAPs*. We have extensively tested Microchip's ZENA network analyzer, but any source capable of streaming to a PCAP is compatible.
 * *The rzusbstick by Atmel* (coming soon).
 
-To configure an input device, click the 'Manage Sources' button or select it from the 'File' menu.
+h3. 2. Analysing previously-recorded packet traces
 
-!images/userman/manage-sources-btn.png!
+todo
 
-The manage sources dialog allows to select different source types. Below, we cover the specific details for each category of sniffer devices.
+h3. 3. Analysing a simulated network
 
-h3. Contiki-compatible motes
+todo
 
-For a Contiki mote flashed with "the sniffer154 firmware":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer, specify the *target device*, desired *802.15.4 channel* and set the *type* option to *snif*. For instructions on how to obtain this firmware and flash it on a Contiki mote, refer to "the README file of the sniffer Contiki application":https://github.com/cetic/contiki/blob/sniffer/examples/sniffer/README.md.
-
-!images/userman/manage-sources-sniffer.png!
-
-h3. Commercial 802.15.4 sniffers with a PCAP output
-
-!images/userman/manage-sources-sniffer-pcap.png!
-
-h3. Atmel rzusbstick
-
-Coming soon
-
-h2. Starting a live capture
-
-Once a source has been selected, the 'Start' button will be enabled.
-
-<center>
-!http://cetic.github.io/foren6/images/userman/start-btn.png! !http://cetic.github.io/foren6/images/userman/stop-btn.png!
-</center>
-
-Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order. It is possible to scroll back to a previous state, without interrupting the live capture.
-
-h2. The Network Visualizer
+h2(#NETVIS). The Network Visualizer
 
 The Network Visualizer window represents the status of the nearby 6LoWPAN networks. We will cover the basic functionalities offered by the Network Visualizer, then introduce site-specific customization using *Layouts* and cover the different *Overlays* available to visualize different types of network-related info.
 
@@ -140,10 +128,10 @@ h4. Parent/Child Highlighting
 
 Finally, a *Parent/Child Highlighting* overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.
 
-h2. Replaying PCAPs
+h2(#MULTISNIF). Multiple Sniffers
 
 todo
 
-h2. Multiple Sniffers
+h2(#GETSTARTED). Get Started
 
-todo
+To get started, we invite you to follow "these introductory examples":getting-started.html.
