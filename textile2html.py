@@ -83,7 +83,7 @@ def generate(template, sourcedir, outdir):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--template', default='template.html')
+    parser.add_argument('-t', '--template', default='template/template.html')
     parser.add_argument('-s', '--sourcedir', default='pages-textile')
     parser.add_argument('-o', '--outputdir', default='.')
     args = parser.parse_args()
