@@ -124,7 +124,76 @@ x=0
 y=50
 locked=true
 
-	...etc</code></pre>
+	...etc</code></pre></p>
+
+	<p>The Foren6 sources provide a few example layouts. The following 3 examples can be reproduced from the samples contained in the example folder.</p>
+
+	<h4>Layout Example 1: Grid Topology</h4>
+
+	<p>Below (left), is a screenshot of the layout <strong>example-layout-grid-3&#215;6.ini</strong> while replaying a <span class="caps">COOJA</span> simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout&#8217; from the Layout Menu.</p>
+
+	<p><img src="images/userman/layout-double-grid.png" alt="" /></p>
+
+	<h4>Layout Example 2: Building walls with real sensor locations</h4>
+
+	<p><img src="images/userman/testbed-cetic-layout-real.png" alt="" /></p>
+
+	<h4>Layout Example 3: Sensor images for a demo</h4>
+
+	<p>todo: show <span class="caps">CETIC</span> <span class="caps">JDL</span> demo layout</p>
+
+	<h3>Overlays</h3>
+
+	<p><strong>Overlays</strong> allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the <strong>Toggle Node Info</strong> button.</p>
+
+	<h4>Normal Overlay</h4>
+
+	<p>The default overlay</p>
+
+	<h4>Dodags Overlay</h4>
+
+	<p>In the <strong>Dodags</strong> overlay, motes are assigned a fixed color based on their <span class="caps">DODAG</span> ID. This ID is a RPL-related parameter uniquement identifying a <span class="caps">DODAG</span> by the global IP address of its root.</p>
+
+	<h4><span class="caps">RPL</span> Instance Overlay</h4>
+
+	<p>Foren6 currently supports instances in a limited way: nodes from different instances will be displayed in different colors in this overlay, but the application is not yet compatible with motes participating in multiple instances simultaneously (nor does Contiki support that at the moment).</p>
+
+	<h4>Node Traffic Overlay</h4>
+
+	<p>The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the <span class="caps">RGB</span> color 0&#215;000000 (black) to the mote with the highest number of packets, and a light grey to the mote which sent the least amount of traffic (gradually closer to white (0xFFFFF) as the scale size increases).</p>
+
+	<p>An example is shown below, in a network where mote 17 sends a constant stream of <span class="caps">ICMP</span> Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
+
+	<p><img src="images/userman/overlay-nodetraffic-withinfo.png" alt="" /></p>
+
+	<p>This overlay turns out to be very useful to identify highly-sollicited nodes in the network, which is important to monitor if the sensors are running on batteries.</p>
+
+	<h4>Max DAO/<span class="caps">DIO</span> Interval Overlays</h4>
+
+	<p>The next two overlays define a greyscale coloring based on the maximum interval between two successive DAOs and DIOs heard from each mote.</p>
+
+	<h4>Errors Overlays</h4>
+
+	<p>A series of <strong>Error Overlays</strong> detects incoherent network states/messages and uses a red scale to locate them on the topology. The different errors currently displayed are:</p>
+
+	<ul>
+		<li>Rank errors</li>
+		<li>Routing loop errors</li>
+		<li>IP mismatch errors in <span class="caps">DAO</span> destination</li>
+		<li><span class="caps">DODAG</span> mismatch errors in <span class="caps">DAO</span></li>
+	</ul>
+
+	<h4>Parent/Child Highlighting</h4>
+
+	<p>Finally, a <strong>Parent/Child Highlighting</strong> overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.</p>
+
+	<h2>Replaying PCAPs</h2>
+
+	<p>todo</p>
+
+	<h2>Multiple Sniffers</h2>
+
+	<p>todo</p>
       </section>
 
       <footer>

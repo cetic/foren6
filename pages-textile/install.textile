@@ -10,7 +10,7 @@ sudo make install</pre>
 
 h2. Linux packages
 
-<pre>...</pre>
+...
         
 h2. Windows
 
