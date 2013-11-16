@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Foren6: A 6LoWPAN Diagnosis Tool</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-45242872-2', 'cetic.github.io');
+      ga('send', 'pageview');
+    </script>
+    <div class="wrapper">
+
+      <header>
+        <a href="index.html"><img id="logo" src="images/foren6-400p-alpha.png"/></a>
+        <p class="view"><a href="https://github.com/cetic/foren6">View the Project on GitHub <small>cetic/foren6</small></a></p>
+
+
+        <ul id="ghbuttons">
+          <li><a href="https://github.com/cetic/foren6/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cetic/foren6/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cetic/foren6">View On <strong>GitHub</strong></a></li>
+        </ul>
+        <ul id="foren6links">
+          <li><a href="./index.html">Home</a></li>
+<li><a href="./install.html">Installation Notes</a></li>
+<li><a href="./guide.html">User Manual</a></li>
+<li><a href="./getting-started.html">Walkthough</a></li>
+<li><a href="./credits.html">Credits</a></li>
+
+        </ul>
+      </header>
+      
+      
+      <section class="justified centered">
+        <center>
+        <h1>A Short Guide to Foren6</h1>
+        </center>
+          	<p><a href="#WHY">Why Foren6?</a> | <a href="#GUI"><span class="caps">GUI</span> Overview</a> | <a href="#SOURCES">Packet Sources</a> | <a href="#NETVIS">Network Visualizer</a> | <a href="#MULTISNIF">Multiple Sniffers</a> | <a href="#GETSTARTED">Get Started</a></p>
+
+	<h2 id="WHY">Why Foren6?</h2>
+
+	<p>Foren6 is an effort to provide a non-intrusive 6LoWPAN network analysis tool. It leverages passive sniffer devices to reconstruct a visual and textual representation of network information to support real-world Internet of Things applications where other means of debug (cabled or network-based monitoring) are too costly or impractical. This guide describes each part of the application and provides useful user information.</p>
+
+	<h2 id="GUI"><span class="caps">GUI</span> Overview</h2>
+
+	<p>Foren6 is a Qt application with fixed and modular widgets. In its most basic form, the application resembles the image below. A <strong>Network Vizualizer</strong> window offers a graphical view of the network topology, representing the preferred parent of each module if the network uses the <span class="caps">RPL</span> routing protocol. When clicking on a sensor, a <strong>Node Information</strong> window displays all the information about the mote available at that time. Both the Network Visualizer and the Node Information are time-dependant, and depict the state of the perceived network at the point in time set by a <strong>Scrollable Timeline</strong> at the bottom of the window.</p>
+
+	<p><img src="images/userman/foren6-anatomy-basic.png" alt="" /></p>
+
+	<p>The main window can be extended with <strong>dockable widgets</strong>, providing optional information. The <strong>Event Widget</strong> lists the history of all the events which occurred since the start. An event can be a new packet or a change in a node or network state detected by the internal analyzer. A filter field allows to narrow down the list of events to a particular type. The <strong>Packet Dissector</strong> lists the full packet info when a packet is selected in the Event Widget. The dissection is based on <a href="http://www.wireshark.org/docs/man-pages/tshark.html">tshark</a>, and is thus similar to <a href="http://www.wireshark.org/">Wireshark</a>. The dockable widgets can be added through the 'Window&#8217; menu, and their position is persitent after the application is closed.</p>
+
+	<p><img src="images/userman/foren6-anatomy-docks.png" alt="" /></p>
+
+	<h2 id="SOURCES">Packet Sources</h2>
+
+	<p>Foren6 can be interfaced with 3 types of packet sources: <strong>physical sniffers</strong> on real networks, previously-recorded <strong>packet trace files</strong> and <strong>simulated</strong> networks.</p>
+
+	<h3>1. Analysing a real network via physical sniffers</h3>
+
+	<p>Foren6 can capture live captures from physical 802.15.4 sniffers. It supports three types of sniffer hardware:</p>
+
+	<ul>
+		<li><strong>Any Contiki-compatible mote</strong> with a <span class="caps">USB</span> connector. Any Contiki mote can serve as a sniffer, provided is it programmed with <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer">a specific Contiki application</a>. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.</li>
+		<li><strong>Commercial sniffers which generate PCAPs</strong>. We have extensively tested Microchip&#8217;s <span class="caps">ZENA</span> network analyzer, but any source capable of streaming to a <span class="caps">PCAP</span> is compatible.</li>
+		<li><strong>The rzusbstick by Atmel</strong> (coming soon).</li>
+	</ul>
+
+	<h3>2. Analysing previously-recorded packet traces</h3>
+
+	<p>todo</p>
+
+	<h3>3. Analysing a simulated network</h3>
+
+	<p>todo</p>
+
+	<h2 id="NETVIS">The Network Visualizer</h2>
+
+	<p>The Network Visualizer window represents the status of the nearby 6LoWPAN networks. We will cover the basic functionalities offered by the Network Visualizer, then introduce site-specific customization using <strong>Layouts</strong> and cover the different <strong>Overlays</strong> available to visualize different types of network-related info.</p>
+
+	<h3>Basic functionalities</h3>
+
+	<p>Each 6LoWPAN host is drawn as a circle with a hexadecimal number inside, which is the last two bytes of the mote&#8217;s <span class="caps">MAC</span> address. Motes can be <strong>renamed</strong> at any time by right-clicking them. An alternate name will appear thereafter instead of the hexadecimal ID.</p>
+
+	<p>By default, <strong>mote positions</strong> are unknown to Foren6, and the application doesn&#8217;t attempt to use <span class="caps">RSSI</span> or time-based techniques to calculate the mote positions (Foren6 is not a localization tool). Instead, motes appear at arbitrary positions inside the Network Visualizer and obey to two simple rules to form a tree: motes attract each other if they form a child-parent relationship, and repell otherwise. This technique was inspired from the Contiki Collect View application. To avoid unwanted movement, each mote can be individually <strong>pinned</strong> to a particular position in the window by clicking the mouse wheel on the mote, or selecting lock/unlock when right-clicking the mote. A global setting can toggle the node movement altogether, using the <strong>Toggle Node Movement</strong> button in the taskbar. In all situations, motes can be individually <strong>displaced</strong> with a drag & drop.</p>
+
+	<p><img src="images/userman/toggle-mvt-btn.png" alt="" /></p>
+
+	<h3>Layouts</h3>
+
+	<p>The Network Visualizer can be customized using <strong>Layouts</strong>. With layouts, the user can specifiy <strong>predefined mote positions</strong> inside the Network Visualizer for some or all motes, and load a <strong>background image</strong>. A layout can be constructed within the application itself, by pinning motes to desired positions and loading an optional background from the <strong>Layout Menu</strong>. From the Layout Menu, the current layout can be exported to a configuration file for future use. You can also create layouts by editing a layout file manually following this example layout:</p>
+
+	<p><pre><code>[General]
+background=
+scale=1.2
+
+[12740100010101]
+x=0
+y=0
+locked=true
+
+[12740200020202]
+x=0
+y=50
+locked=true
+
+...etc</code></pre></p>
+
+	<p>The Foren6 sources provide a few example layouts. The following 3 examples can be reproduced from the samples contained in the example folder.</p>
+
+	<h4>Layout Example 1: Grid Topology</h4>
+
+	<p>Below (left), is a screenshot of the layout <strong>example-layout-grid-3&#215;6.ini</strong> while replaying a <span class="caps">COOJA</span> simulation with motes spread out in a 3 by 6 grid. To the right, the same network is viewed at the same moment in time, after selecting 'Clear Layout&#8217; from the Layout Menu.</p>
+
+	<p><img src="images/userman/layout-double-grid.png" alt="" /></p>
+
+	<h4>Layout Example 2: Building walls with real sensor locations</h4>
+
+	<p><img src="images/userman/testbed-cetic-layout-real.png" alt="" /></p>
+
+	<h4>Layout Example 3: Sensor images for a demo</h4>
+
+	<p>todo: show <span class="caps">CETIC</span> <span class="caps">JDL</span> demo layout</p>
+
+	<h3>Overlays</h3>
+
+	<p><strong>Overlays</strong> allow to customize the Network Visualizer according a certain metric or parameter. Most overlays consist in changing the mote colors, while a few also control the thickness of the parent-child arrows. Overlays involving numerical metrics provide extra information in the form of a label, under the mote name, which can be toggled with the <strong>Toggle Node Info</strong> button.</p>
+
+	<h4>Normal Overlay</h4>
+
+	<p>The default overlay</p>
+
+	<h4>Dodags Overlay</h4>
+
+	<p>In the <strong>Dodags</strong> overlay, motes are assigned a fixed color based on their <span class="caps">DODAG</span> ID. This ID is a RPL-related parameter uniquement identifying a <span class="caps">DODAG</span> by the global IP address of its root.</p>
+
+	<h4><span class="caps">RPL</span> Instance Overlay</h4>
+
+	<p>Foren6 currently supports instances in a limited way: nodes from different instances will be displayed in different colors in this overlay, but the application is not yet compatible with motes participating in multiple instances simultaneously (nor does Contiki support that at the moment).</p>
+
+	<h4>Node Traffic Overlay</h4>
+
+	<p>The <strong>Node Traffic</strong> overlay assigns a greyscale value to motes based on the total number of packets they sent since the beginning of the capture. The scale is calculated by assigning the <span class="caps">RGB</span> color 0&#215;000000 (black) to the mote with the highest number of packets, and a light grey to the mote which sent the least amount of traffic (gradually closer to white (0xFFFFF) as the scale size increases).</p>
+
+	<p>An example is shown below, in a network where mote 17 sends a constant stream of <span class="caps">ICMP</span> Echo Request (Ping) messages to mote 1. We see that the motes along the path from 17 to 1 are dark because they have forwarded a lot more traffic than the rest of the nodes. Since the traffic is bidirectional (1 replies to the pings), we see that the intermediate motes 6, 8 and 9 sent about twice the amount of traffic than 17 and 1 (as expected), with the Node Info toggled ON.</p>
+
+	<p><img src="images/userman/overlay-nodetraffic-withinfo.png" alt="" /></p>
+
+	<p>This overlay turns out to be very useful to identify highly-sollicited nodes in the network, which is important to monitor if the sensors are running on batteries.</p>
+
+	<h4>Max DAO/<span class="caps">DIO</span> Interval Overlays</h4>
+
+	<p>The next two overlays define a greyscale coloring based on the maximum interval between two successive DAOs and DIOs heard from each mote.</p>
+
+	<h4>Errors Overlays</h4>
+
+	<p>A series of <strong>Error Overlays</strong> detects incoherent network states/messages and uses a red scale to locate them on the topology. The different errors currently displayed are:</p>
+
+	<ul>
+		<li>Rank errors</li>
+		<li>Routing loop errors</li>
+		<li>IP mismatch errors in <span class="caps">DAO</span> destination</li>
+		<li><span class="caps">DODAG</span> mismatch errors in <span class="caps">DAO</span></li>
+	</ul>
+
+	<h4>Parent/Child Highlighting</h4>
+
+	<p>Finally, a <strong>Parent/Child Highlighting</strong> overlay darkens the parent and child nodes of the currently selected node. It helps to navigate through very large networks.</p>
+
+	<h2 id="MULTISNIF">Multiple Sniffers</h2>
+
+	<p>todo</p>
+
+	<h2 id="GETSTARTED">Get Started</h2>
+
+	<p>To get started, we invite you to follow <a href="getting-started.html">these introductory examples</a>.</p>
+      </section>
+
+      <footer>
+        <p>This project is maintained by <a href="http://www.cetic.be">CETIC</a>. Find us on <a href="http://github.com/cetic">GitHub</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme based on <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
