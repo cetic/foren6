@@ -58,9 +58,9 @@ def generate(template, sourcedir, outdir):
             fulldata_entry['htmlcontent'] = contents_parts[1]
         else:
             fulldata_entry['htmlcontent'] = postprocessing(textile.textile(contents_parts[1]))
-
-        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[4:-8]+'.html')
-        fulldata_entry['order'] = int(textile_file.split('-')[0])
+        order_txt = textile_file.split('-')[0]
+        fulldata_entry['order'] = int(order_txt)
+        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[len(order_txt)+1:-8]+'.html')
         fulldata.append(fulldata_entry)
     
     fulldata = sorted(fulldata, key=lambda k: k['order']) 
