@@ -59,6 +59,14 @@
 
 	<p>To begin, you need a Contiki-compatible platform with an 802.15.4 radio and a <span class="caps">USB</span> connector. At the time of this writing, Contiki doesn&#8217;t provide a standard & generic sniffer module allowing to configure the 802.15.4 channel, so we base our sniffers on an existing Contiki application provided by <a href="http://rtn.sssup.it/index.php/software/seed-eye-apps/sniffer-154">the Sniffer 15.4 project</a>. Although any Contiki-compatible module should work, we have limited our tests to the following platforms: TelosB, CM5000, Z1, Econotag.</p>
 
+	<h3 id="PERMSISSIONS">Setting user permissions</h3>
+
+	<p>On Linux, you should configure permissions for the user to access the <span class="caps">USB</span> serial devices &#8211; it is much better practice then launching Foren6 as root. To grant access to a user account, add that user to the 'dialout&#8217; group:</p>
+
+<pre>sudo adduser &#60;username&#62; dialout</pre>
+
+	<p>Then, restart your session to apply the modifications.</p>
+
 	<h3>Programming the sniffer</h3>
 
 	<p>The sniffer application is available on <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer">the sniffer branch of our Contiki fork</a>.<br />To program a Contiki-compatible mote as a 802.15.4:</p>
@@ -72,7 +80,7 @@ make TARGET=your_target sniffer.upload</pre></p>
 
 	<p>For example, with a TMote/Sky, TelosB, CM5000:<br /><pre>make TARGET=sky sniffer.upload</pre></p>
 
-	<p>Note: if you have trouble setting your <span class="caps">USB</span> permissions, run that last command as root.</p>
+	<p>Note: if you have trouble setting your <span class="caps">USB</span> permissions, you will need to run that last command as root.</p>
 
 	<h2>Selecting the sniffer as input device</h2>
 
@@ -88,7 +96,7 @@ make TARGET=your_target sniffer.upload</pre></p>
 		<li><strong>Type</strong>: select <strong>snif</strong></li>
 	</ul>
 
-	<p>Click the <strong>Add</strong> button when the above information is entered. If the device is found by the application, it will appear in the list of available device. If your device exists but you get an error at this point, is it likely that the user running Foren6 does not have permission to access that serial device.<br />Hit the <strong>Close</strong> button to return to the main window.</p>
+	<p>Click the <strong>Add</strong> button when the above information is entered. If the device is found by the application, it will appear in the list of available device. If your device exists but you get an error at this point, is it likely that the user running Foren6 does not have permission to access that serial device. See <a href="#PERMSISSIONS">the above instructions</a> to grant user permissions, or launch the foren6 application as root (not recommended).<br />Hit the <strong>Close</strong> button to return to the main window.</p>
 
 	<h2>Starting a Capture</h2>
 
