@@ -1,48 +1,24 @@
-LINK_TITLE=Walkthough
-PAGE_TITLE=Getting Started: a Step-By-Step Walkthrough
+LINK_TITLE=Walkthrough
+PAGE_TITLE=Getting Started with Step-By-Step Walkthroughs
 ===//===//===
-h2. Example 1: Importing a packet trace of a RPL collect network
+h2. "*Example 1: Analysing a pre-recorded RPL collect network trace*":example1.html
 
-h3. Introduction: why a packet trace import mode?
+In this first example, we will analyse a previously recorded PCAP file. This example is meant to be standalone, so reading the "User Manual":guide.html is recommended but not required. +Requirements+: an installation of foren6, but no extra hardware.
 
-In this first example, we will analyse a previously recorded PCAP file. This mode of operation comes in handy in different kinds of situations. It is not always practical to capture live packets and analyse them at the same time, especially for outdoor deployments where post-analysis will occur in an office after the packet capture. In other cases, it allows an expert to analyse packet traces provided by network administrators not necessarily familiar with Contiki and standards like 6LoWPAN and RPL.
+"*> Follow this example*":example1.html
 
-This example is meant to be standalone. Reading the "User Manual":guide.html is recommended but not required to follow this example.
+h2. "*Example 2: Analysing a pre-recorded multi-DODAG network trace*":example2.html
 
-h3. Launch Foren6
+This is another example using a pre-recorded PCAP file. We recommend to follow Example 1 first, as there are some introductory details which are not repeated in this example. This example explores in more details the RPL-related information extracted from the packet traces. +Requirements+: an installation of foren6, but no extra hardware.
 
-After the "installation":install.html, launch the Foren6 application in your Linux or MacOS X desktop menu (in Linux, go to Applications > Internet > Foren6).
+"*> Follow this example*":example2.html
 
-h3. GUI Setup
+h2. "*Example 3: Analysing a real network with a Contiki-based sniffer*":example3.html
 
-Clear any previously used layout with 'Layouts > Clear Layout'. Add an *Event Widget* by selecting the 'New Information Window' in the 'Window' menu. This opens a floating window, which you can dock inside the main window by dragging it. Open a *Packet Window* with 'New Packet Window' from the 'Window' menu, and dock that one as well. After docking these two widgets, your window show have 4 main parts like the screenshot below:
+The fastest way to get started with a physical sniffer to analyser a real network. It is not necessary to follow the previous examples if you want to analyse a real network in the shortest time possible. +Requirements+: an installation of foren6, and a Contiki-compatible mote with a USB connector (TMote/Sky, TelosB, CM500x, Z1, Econotag...)
 
-!images/userman/foren6-anatomy-clear.png!
+"*> Follow this example*":example3.html
 
-h3. Select a PCAP as source
+h2. "*Example 4: Analysing a real network with a commercial sniffer*":example4.html
 
-To configure an input device, click the 'Manage Sources' button or select it from the 'File' menu.
-
-!images/userman/manage-sources-btn.png!
-
-This opens the Manage Sources dialog, prompting for a source device, 802.15.4 channel and type of input. In this case, we will use an existing PCAP as source. Hit the 'Browse' button next to 'Target', navigate to */usr/share/doc/foren6/pcaps* and select the *example1-rpl-collect.pcap* file. Set the 'Type' field to pcap and hit 'Add'.
-
-!images/userman/manage-sources-pcap.png!
-
-h3. Start the capture
-
-Once the source has been selected, the 'Start' button will be enabled.
-
-<center>
-!http://cetic.github.io/foren6/images/userman/start-btn.png!
-</center>
-
-Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order.
-
-h2. Example 2: Analyse a real network with a Contiki mote
-
-h3. Contiki-compatible motes
-
-For a Contiki mote flashed with "the sniffer154 firmware":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer, specify the *target device*, desired *802.15.4 channel* and set the *type* option to *snif*. For instructions on how to obtain this firmware and flash it on a Contiki mote, refer to "the README file of the sniffer Contiki application":https://github.com/cetic/contiki/blob/sniffer/examples/sniffer/README.md.
-
-!images/userman/manage-sources-sniffer.png!
+Under Construction...

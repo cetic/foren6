@@ -136,6 +136,12 @@ a {
   text-decoration:none;
 }
 
+a strong{
+  color:#39c;
+  font-weight:700;
+  text-decoration:none;
+}
+
 a small {
   font-size:11px;
   color:#777;

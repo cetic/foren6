@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Foren6: A 6LoWPAN Diagnosis Tool</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-45242872-2', 'cetic.github.io');
+      ga('send', 'pageview');
+    </script>
+    <div class="wrapper">
+
+      <header>
+        <a href="index.html"><img id="logo" src="images/foren6-400p-alpha.png"/></a>
+        <p class="view"><a href="https://github.com/cetic/foren6">View the Project on GitHub <small>cetic/foren6</small></a></p>
+
+
+        <ul id="ghbuttons">
+          <li><a href="https://github.com/cetic/foren6/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cetic/foren6/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cetic/foren6">View On <strong>GitHub</strong></a></li>
+        </ul>
+        <ul id="foren6links">
+          <li><a href="./index.html">Home</a></li>
+<li><a href="./install.html">Installation Notes</a></li>
+<li><a href="./guide.html">User Manual</a></li>
+<li><a href="./getting-started.html">Walkthrough</a></li>
+<li><a href="./credits.html">Credits</a></li>
+
+        </ul>
+      </header>
+      
+      
+      <section class="justified centered">
+        <center>
+        <h1>Example 1: Importing a packet trace of a RPL collect network</h1>
+        </center>
+          	<p><a href="getting-started.html"><strong>Back to examples index</strong></a></p>
+
+	<h2>Introduction: why a packet trace import mode?</h2>
+
+	<p>In this first example, we will analyse a previously recorded <span class="caps">PCAP</span> file. This mode of operation comes in handy in different kinds of situations. It is not always practical to capture live packets and analyse them at the same time, especially for outdoor deployments where post-analysis will occur in an office after the packet capture. In other cases, it allows an expert to analyse packet traces provided by network administrators not necessarily familiar with Contiki and standards like 6LoWPAN and <span class="caps">RPL</span>.</p>
+
+	<p>This example is meant to be standalone. Reading the <a href="guide.html">User Manual</a> is recommended but not required to follow this example.</p>
+
+	<h2>Launch Foren6</h2>
+
+	<p>After completing the <a href="install.html">installation</a>, launch the Foren6 application in your Linux or MacOS X desktop menu (in Linux, go to Applications > Internet > Foren6).</p>
+
+	<h2><span class="caps">GUI</span> Setup</h2>
+
+	<p>Clear any previously used layout with 'Layouts > Clear Layout&#8217;. Add an <strong>Event Widget</strong> by selecting the 'New Information Window&#8217; in the 'Window&#8217; menu. This opens a floating window, which you can dock inside the main window by dragging it. Open a <strong>Packet Window</strong> with 'New Packet Window&#8217; from the 'Window&#8217; menu, and dock that one as well. After docking these two widgets, your window show have 4 main parts like the screenshot below:</p>
+
+	<p><img src="images/userman/foren6-anatomy-clear.png" alt="" /></p>
+
+	<h2>Select a <span class="caps">PCAP</span> as source</h2>
+
+	<p>To configure an input device, click the 'Manage Sources&#8217; button or select it from the 'File&#8217; menu.</p>
+
+	<p><img src="images/userman/manage-sources-btn.png" alt="" /></p>
+
+	<p>This opens the Manage Sources dialog, prompting for a source device, 802.15.4 channel and type of input. In this case, we will use an existing <span class="caps">PCAP</span> as source. Hit the 'Browse&#8217; button next to 'Target&#8217;, navigate to <strong>/usr/share/doc/foren6/pcaps</strong> and select the <strong>example1-rpl-collect.pcap</strong> file. Set the 'Type&#8217; field to pcap and hit 'Add&#8217;, then close the Manage Sources dialog.</p>
+
+	<p><img src="images/userman/manage-sources-pcap.png" alt="" /></p>
+
+	<h2>Start the capture</h2>
+
+	<p>Once the source has been selected, the 'Start&#8217; button will be enabled.</p>
+
+	<p><img src="images/userman/start-btn.png" alt="" /></p>
+
+	<p>Clicking it starts the packet capture. Captured packets will appear in the Event Widget, and Foren6 will attempt to represent the network topology in the Network Visualizer window as best it can based on available control and data packets. Events are tagged on the timeline at the bottom in chronological order. Since we are importing an existing packet trace, Foren6 reads the whole file at once and scrolls the timeline to the end of the capture.</p>
+
+	<p>After the <span class="caps">PCAP</span> has been parsed, the <span class="caps">RPL</span> <span class="caps">DODAG</span> will be visible in the Network Visualizer, as below:</p>
+
+	<p><img src="images/userman/example1-dodag.png" alt="" /></p>
+
+	<p>Foren6 identifies a <span class="caps">RPL</span> Root as the node which announces ranks equal to the <span class="caps">RPL</span> Root Rank, set as 256 by default, as it is the default in Contiki (note: this can be changed in File -> preferences for other types of <span class="caps">RPL</span> networks). The <span class="caps">RPL</span> Root is drawn with a thicker circle than the rest. When clicking on a node, the Node Information panel will list all the known information. Above, we have clicked on the <span class="caps">RPL</span> Root, and we can the <span class="caps">DODAD</span> ID, Instance ID, Mode of Operation, etc. Futher down, we see some generic network statistics and a recontructed routing table based on observed application packets.</p>
+
+	<p><img src="images/userman/link-unlink-btn.png" alt="" /></p>
+
+	<h2>Navigating through the history</h2>
+
+	<p>It is often useful to scroll back through the history to analyse a past behavior. Here, we will observe the <span class="caps">RPL</span> <span class="caps">DODAG</span> establishment by scrolling through the entire capture history. To do so, scroll the timeline&#8217;s horizontal slider back all the way to the left. When doing so, you will notice that the Network Visualiser is synchronized with the timeline.</p>
+
+	<p><img src="images/userman/example1-timeline.png" alt="" /></p>
+
+	<p><a href="getting-started.html"><strong>Back to examples index</strong></a></p>
+      </section>
+
+      <footer>
+        <p>This project is maintained by <a href="http://www.cetic.be">CETIC</a>. Find us on <a href="http://github.com/cetic">GitHub</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme based on <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
