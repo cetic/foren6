@@ -2,6 +2,7 @@ import argparse
 import os
 import textile
 import re
+from os.path import normpath as normpath
 
 #Ugly hack to force the replacement of the whole middle section in RAW_HTML mode
 #Instead of just the #TEX2HTML_BODY section (index.html uses this)
@@ -87,6 +88,7 @@ def generate(template, sourcedir, outdir):
         os.makedirs(outdir)
     
     for entry in fulldata:
+        print("processing %s --> %s" % (normpath(os.path.join(sourcedir,entry['textilefile'])), normpath(os.path.join(outdir,entry['htmlfile']))))
         htmlfile = open(entry['htmlfile'], 'w')
         htmlcontents = page_template
         if 'MODE' in entry['options'] and entry['options']['MODE'] == 'RAW_HTML':
@@ -105,5 +107,5 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--outputdir', default='.')
     args = parser.parse_args()
     generate(args.template, args.sourcedir, args.outputdir)
-
+    print("DONE")
 
