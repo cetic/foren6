@@ -43,6 +43,12 @@ body {
   padding-bottom:20px;
 }
 
+.centralliner{
+  width: 55%;
+  text-align:justify;
+  text-justify:inter-word;
+}
+
 .poneliner{
   padding-top:0px;
   padding-bottom:0px;
