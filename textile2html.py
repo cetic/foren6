@@ -12,6 +12,13 @@ raw_mode_replace="""      <section class="justified centered">
           #TEX2HTML_BODY
       </section>"""
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def links(fulldata):
     """Build the list of links based on all the pages found and put them in increasing order"""
     links_txt = ''
@@ -63,8 +70,14 @@ def generate(template, sourcedir, outdir):
         else:
             fulldata_entry['htmlcontent'] = postprocessing(textile.textile(contents_parts[1]))
         order_txt = textile_file.split('-')[0]
-        fulldata_entry['order'] = int(order_txt)
-        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[len(order_txt)+1:-8]+'.html')
+        if is_number(order_txt):
+            fulldata_entry['order'] = int(order_txt)
+            order_len = len(order_txt)+1
+        else:
+            order_txt = ''
+            order_len = 0
+            fulldata_entry['order'] = -1
+        fulldata_entry['htmlfile'] = os.path.join(outdir,textile_file[order_len:-8]+'.html')
         fulldata.append(fulldata_entry)
     
     fulldata = sorted(fulldata, key=lambda k: k['order']) 
