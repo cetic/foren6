@@ -24,6 +24,8 @@ def links(fulldata):
 def format_pre(text):
     pre_end=0
     while True:
+        #Sliding window through the file, fixes formatting errors within <pre> tags
+        current_index = pre_end
         pre_start = text[pre_end:].find('<pre>')
         pre_end = text[pre_end:].find('</pre>') + len('</pre>')
         if pre_start == -1 or pre_end == -1:
@@ -31,9 +33,9 @@ def format_pre(text):
         format_pre_rules = {'<br />':'\n', '\t<p>':'', '</p>':''}
         def fn(match):
             return format_pre_rules[match.group()]
-        newtext = re.sub('|'.join(re.escape(k) for k in format_pre_rules), fn, text[pre_start:pre_end])
-        text = text[:pre_start] + newtext + text[pre_end:]
-        pre_end = pre_start + len(newtext)
+        newtext = re.sub('|'.join(re.escape(k) for k in format_pre_rules), fn, text[current_index+pre_start:current_index+pre_end])
+        text = text[:current_index+pre_start] + newtext + text[current_index+pre_end:]
+        pre_end = current_index + pre_start + len(newtext)
 
 def postprocessing(text):
     text = format_pre(text)
