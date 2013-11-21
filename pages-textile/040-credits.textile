@@ -11,3 +11,4 @@ We would like to thank the following people:
 * "Ravi Ramdoyal":https://www.cetic.be/Ravi-Ramdoyal for designing the Foren6 logo.
 * The many icon designers (see Help --> About)
 
+This work is partly funded by the Walloon Region under the First-DoCA funding number 1017211.
