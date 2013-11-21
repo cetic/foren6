@@ -5,7 +5,7 @@ MODE=RAW_HTML
         <center>
         <h1><a name="foren6-by-cetic" class="anchor" href="#foren6-by-cetic"><span class="octicon octicon-link"></span></a>6LoWPAN Troubleshooting with Foren6</h1>
         </center>
-
+        <p class="justified">Foren6 is an effort to provide a non-intrusive 6LoWPAN network analysis tool. It leverages passive sniffer devices to reconstruct a visual and textual representation of network information to support real-world Internet of Things applications where other means of debug (cabled or network-based monitoring) are too costly or impractical.</p>
         <div class="column1-wrap">
             <div class="column1"><p class="poneliner"><strong>Visualize your 6LoWPAN network</strong>. Foren6 uses sniffers to capture 6LoWPAN traffic and renders the network state it in a graphical user interface.</p></div>
         </div>
