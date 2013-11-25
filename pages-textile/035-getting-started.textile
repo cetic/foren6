@@ -1,4 +1,4 @@
-LINK_TITLE=Walkthrough
+LINK_TITLE=Step-by-Step Examples
 PAGE_TITLE=Getting Started with Step-By-Step Walkthroughs
 ===//===//===
 h2. "*Example 1: Analysing a pre-recorded RPL collect network trace*":example1.html
