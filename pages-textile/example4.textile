@@ -1,4 +1,4 @@
-PAGE_TITLE=Example 3: Analysing a pre-recorded multi-DODAG network trace
+PAGE_TITLE=Example 4: Analysing a real network with a commercial sniffer
 ===//===//===
 "*Back to examples index*":getting-started.html
 

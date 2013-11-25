@@ -45,11 +45,66 @@
       
       <section class="justified centered">
         <center>
-        <h1>Example 2: Analysing a pre-recorded multi-DODAG network trace</h1>
+        <h1>Example 2: Analysing a real network with a sniffer</h1>
         </center>
           	<p><a href="getting-started.html"><strong>Back to examples index</strong></a></p>
 
-	<p>Under Construction</p>
+	<h2>Introduction</h2>
+
+	<p>In this example, we will cover the basic steps to analyse a real 6LoWPAN network using a Contiki-based sniffer module.</p>
+
+	<h2>Configuring the sniffer</h2>
+
+	<h3>Getting the hardware</h3>
+
+	<p>To begin, you need a Contiki-compatible platform with an 802.15.4 radio and a <span class="caps">USB</span> connector. At the time of this writing, Contiki doesn&#8217;t provide a standard & generic sniffer module allowing to configure the 802.15.4 channel, so we base our sniffers on an existing Contiki application provided by <a href="http://rtn.sssup.it/index.php/software/seed-eye-apps/sniffer-154">the Sniffer 15.4 project</a>. Although any Contiki-compatible module should work, we have limited our tests to the following platforms: TelosB, CM5000, Z1, Econotag.</p>
+
+	<h3 id="PERMISSIONS">Setting user permissions</h3>
+
+	<p>On Linux, you should configure permissions for the user to access the <span class="caps">USB</span> serial devices &#8211; it is much better practice then launching Foren6 as root. To grant access to a user account, add that user to the 'dialout&#8217; group:</p>
+
+<pre>sudo adduser &#60;username&#62; dialout</pre>
+
+	<p>Then, restart your session to apply the modifications.</p>
+
+	<h3>Programming the sniffer</h3>
+
+	<p>The sniffer application is available on <a href="https://github.com/cetic/contiki/tree/sniffer/examples/sniffer">the sniffer branch of our Contiki fork</a>.<br />To program a Contiki-compatible mote as a 802.15.4:</p>
+
+	<p>Make sure you have a proper toolchain set up for your target device. For more info, refer to Step 1 of <a href="https://github.com/contiki-os/contiki/wiki/Setup-contiki-toolchain-in-ubuntu-13.04">the official Contiki documentation</a>.<br />Download the source:<br /><pre>git clone https://github.com/cetic/contiki
+cd contiki
+git checkout sniffer</pre></p>
+
+	<p>Connect your sniffer device. Build & Upload the application<br /><pre>cd examples/sniffer
+make TARGET=your_target sniffer.upload</pre></p>
+
+	<p>For example, with a TMote/Sky, TelosB, CM5000:<br /><pre>make TARGET=sky sniffer.upload</pre></p>
+
+	<p>Note: if you have trouble setting your <span class="caps">USB</span> permissions, you will need to run that last command as root.</p>
+
+	<h2>Selecting the sniffer as input device</h2>
+
+	<p>Time to open Foren6, assuming you have already followed the <a href="install.html">Foren6 Installation Instructions</a><br />Open the 'Manage Sources&#8217; dialog by clicking the Manage Sources button in the Toolbar or from the 'File&#8217; menu.</p>
+
+	<p>In this dialog, remove any existing entries in the top section by selecting each individual element and hitting the 'Remove&#8217; button. If you have followed the previous example, you should see one or more 'pcap&#8217; files which must be removed. Next, add a new source by specifying the three fields as shown below:</p>
+
+	<p><img src="images/userman/manage-sources-sniffer.png" alt="" /></p>
+
+	<ul>
+		<li><strong>Target</strong>: type the path to the <span class="caps">USB</span> device (example: /dev/ttyUSB0)</li>
+		<li><strong>Channel</strong>: the integer value of the Channel you want to snif (1 to 26)</li>
+		<li><strong>Type</strong>: select <strong>snif</strong></li>
+	</ul>
+
+	<p>Click the <strong>Add</strong> button when the above information is entered. If the device is found by the application, it will appear in the list of available device. If your device exists but you get an error at this point, is it likely that the user running Foren6 does not have permission to access that serial device. See <a href="#PERMISSIONS">the above instructions</a> to grant user permissions, or launch the foren6 application as root (not recommended).<br />Hit the <strong>Close</strong> button to return to the main window.</p>
+
+	<h2>Starting a Capture</h2>
+
+	<p>Click the <strong>Start</strong> button (which will now be enabled) to launch a packet capture.</p>
+
+	<p><img src="images/userman/start-btn.png" alt="" /></p>
+
+	<p>The timeline should start ticking, and new packets will appear in the Event Window. If the packets are properly formatted, the network visualiser will display the sniffed nodes, and connect them to form a reconstructed <span class="caps">RPL</span> graph based on the sniffed information.</p>
 
 	<p><a href="getting-started.html"><strong>Back to examples index</strong></a></p>
       </section>

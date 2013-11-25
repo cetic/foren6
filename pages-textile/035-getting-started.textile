@@ -7,18 +7,22 @@ In this first example, we will analyse a previously recorded PCAP file. This exa
 
 "*> Follow this example*":example1.html
 
-h2. "*Example 2: Analysing a pre-recorded multi-DODAG network trace*":example2.html
+h2. "*Example 2: Analysing a real network with a Contiki-based sniffer*":example2.html
 
-This is another example using a pre-recorded PCAP file. We recommend to follow Example 1 first, as there are some introductory details which are not repeated in this example. This example explores in more details the RPL-related information extracted from the packet traces. +Requirements+: an installation of foren6, but no extra hardware.
+The fastest way to get started with a physical sniffer to analyser a real network. It is not necessary to follow the previous examples if you want to analyse a real network in the shortest time possible. +Requirements+: an installation of foren6, and a Contiki-compatible mote with a USB connector (TMote/Sky, TelosB, CM500x, Z1, Econotag...)
 
 "*> Follow this example*":example2.html
 
-h2. "*Example 3: Analysing a real network with a Contiki-based sniffer*":example3.html
+h2. "*Example 3: Analysing a pre-recorded multi-DODAG network trace*":example3.html
 
-The fastest way to get started with a physical sniffer to analyser a real network. It is not necessary to follow the previous examples if you want to analyse a real network in the shortest time possible. +Requirements+: an installation of foren6, and a Contiki-compatible mote with a USB connector (TMote/Sky, TelosB, CM500x, Z1, Econotag...)
+This is another example using a pre-recorded PCAP file. We recommend to follow Example 1 first, as there are some introductory details which are not repeated in this example. This example explores in more details the RPL-related information extracted from the packet traces. +Requirements+: an installation of foren6, but no extra hardware.
+
+Under Construction...
 
 "*> Follow this example*":example3.html
 
 h2. "*Example 4: Analysing a real network with a commercial sniffer*":example4.html
 
 Under Construction...
+
+"*> Follow this example*":example4.html
