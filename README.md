@@ -12,4 +12,4 @@ On MACOS-X with Fink, run the following command :
 Please visit the online documentation for more information
 and other installation methods:
 
-http://cetic.github.io/foren6
+**http://cetic.github.io/foren6**
