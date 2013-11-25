@@ -1,7 +1,7 @@
 Top-level project for the 6LoWPAN Diagnosis Tool.
-To get started:
+To get started directly from the sources:
 
-    git clone ssh://git@git.cetic.be:61011/ldt
+    git clone https://github.com/cetic/foren6.git
     cd foren6
     make run
 
@@ -9,6 +9,7 @@ On MACOS-X with Fink, run the following command :
 
     make run QMAKE_QT4=/sw/lib/qt4-mac/bin/qmake CFLAGS=-m32
 
-Please visit the online documentation for more information:
+Please visit the online documentation for more information
+and other installation methods:
 
-https://github.com/cetic/foren6/wiki
+http://cetic.github.io/foren6
