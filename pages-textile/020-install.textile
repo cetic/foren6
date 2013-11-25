@@ -1,6 +1,19 @@
 PAGE_TITLE=Installing Foren6
 LINK_TITLE=Installation Notes
 ===//===//===
+
+h2. Debian packages
+
+Download the appropriate package:
+* "*foren6_1.0-1_i386.deb*":http://sourceforge.net/projects/foren6/files/foren6-1.0-1/foren6_1.0-1_i386.deb/download
+* "*foren6_1.0-1_amd64.deb*":http://sourceforge.net/projects/foren6/files/foren6-1.0-1/foren6_1.0-1_amd64.deb/download
+
+Install the package:
+<pre>sudo dpkg -i foren6_1.0-1_arch.deb</pre>
+
+If this is your first installation, it is likely you are missing dependencies. Run the following to fix and finish the installation.
+<pre>sudo apt-get install -f</pre>
+
 h2. Linux/MacOS X, from source
 
 <pre>git clone https://github.com/cetic/foren6.git
@@ -8,14 +21,12 @@ cd foren6
 make
 sudo make install</pre>
 
-h2. Linux packages
-
-...
-        
-h2. Windows
-
-Coming soon.
-
 h2. Android
 
-Our Android port of Foren6 is not yet available. Stay tuned!
+Our Android port of Foren6 will soon be released. Stay tuned!
+
+h2. Windows
+
+On our roadmap.
+
+
