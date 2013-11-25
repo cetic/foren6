@@ -14,4 +14,4 @@ MimeType=application/vnd.tcpdump.pcap;
 # http://www.freedesktop.org/wiki/Specifications/menu-spec
 Categories=GNOME;Network;
 Encoding=UTF-8
-Icon=/usr/share/docs/foren6/icons/foren6-48-alpha.png
+Icon=/usr/share/doc/foren6/icons/foren6-48-alpha.png
