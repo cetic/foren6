@@ -1,9 +1,9 @@
 [submodule "capture"]
-	path = capture
-	url = ssh://git@git.cetic.be:61011/lowpan-diagnosis-tool/capture
+        path = capture
+        url = https://github.com/cetic/foren6-capture.git
 [submodule "analyzer"]
-	path = analyzer
-	url = ssh://git@git.cetic.be:61011/lowpan-diagnosis-tool/analyzer
+        path = analyzer
+        url = https://github.com/cetic/foren6-analyzer.git
 [submodule "gui-qt"]
-	path = gui-qt
-	url = ssh://git@git.cetic.be:61011/lowpan-diagnosis-tool/gui-qt
+        path = gui-qt
+        url = https://github.com/cetic/foren6-gui-qt.git
