@@ -13,3 +13,5 @@ Please visit the online documentation for more information
 and other installation methods:
 
 **http://cetic.github.io/foren6**
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cetic/foren6/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
