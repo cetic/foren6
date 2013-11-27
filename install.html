@@ -47,14 +47,7 @@
         <center>
         <h1>Installing Foren6</h1>
         </center>
-          	<h2>Linux/MacOS X, from source</h2>
-
-<pre>git clone https://github.com/cetic/foren6.git
-cd foren6
-make
-sudo make install</pre>
-
-	<h2>Debian packages</h2>
+          	<h2>Debian packages</h2>
 
 	<p>Download the appropriate package:
 	<ul>
@@ -62,9 +55,16 @@ sudo make install</pre>
 		<li><a href="http://sourceforge.net/projects/foren6/files/foren6-1.0-1/foren6_1.0-1_amd64.deb/download"><strong>foren6_1.0-1_amd64.deb</strong></a></li>
 	</ul></p>
 
-	<p>Run dkpg:<br /><pre>sudo dpkg -i foren6_1.0-1_arch.deb</pre></p>
+	<p>Install the package:<br /><pre>sudo dpkg -i foren6_1.0-1_arch.deb</pre></p>
 
 	<p>If this is your first installation, it is likely you are missing dependencies. Run the following to fix and finish the installation.<br /><pre>sudo apt-get install -f</pre></p>
+
+	<h2>Linux/MacOS X, from source</h2>
+
+<pre>git clone https://github.com/cetic/foren6.git
+cd foren6
+make
+sudo make install</pre>
 
 	<h2>Android</h2>
 
