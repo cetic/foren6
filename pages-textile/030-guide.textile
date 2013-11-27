@@ -23,19 +23,33 @@ Foren6 can be interfaced with 3 types of packet sources: *physical sniffers* on 
 
 h3. 1. Analysing a real network via physical sniffers
 
-Foren6 can capture live captures from physical 802.15.4 sniffers. It supports three types of sniffer hardware:
+Foren6 can capture live captures from physical 802.15.4 sniffers. It supports 2 types of sniffer hardware:
 
-* *Any Contiki-compatible mote* with a USB connector. Any Contiki mote can serve as a sniffer, provided is it programmed with "a specific Contiki application":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer. The TelosB, CM5000, Z1 and Econotag have been tested and are known to work.
-* *Commercial sniffers which generate PCAPs*. We have extensively tested Microchip's ZENA network analyzer, but any source capable of streaming to a PCAP is compatible.
-* *The rzusbstick by Atmel* (coming soon).
+* *Any Contiki-compatible CC2420-based mote* with a USB connector. CC2420 motes can serve as a sniffer, provided is it programmed with "a specific Contiki application":https://github.com/cetic/contiki/tree/sniffer/examples/sniffer. The *TelosB*, *CM5000* and *Z1* have been tested and are known to work.
+* *Other sniffers which generate PCAP outputs*. Many other devices can serve as sniffers. They each use a generic FIFO mechanism to stream pcap data to Foren6. Here are seperate instructions for the platforms which are known to work. Note: in each procedure, it is important to *read from the FIFO before writing to it*, because the pcap headers are not necessarily repeated, so the order in which these intructions are given is important.
+** *Econotag*
+*** Get libmc1322x and compile all firmwares <pre>git clone https://github.com/malvira/libmc1322x.git
+cd libmc1322x/tests
+make</pre>
+*** Program the Econotag with "*rftest-rx from the tests folder*":https://github.com/malvira/libmc1322x/blob/master/tests/rftest-rx.c. Refer to the "*libmc1322x documentation*":https://github.com/malvira/libmc1322x/wiki for help on how to do that.
+*** From a terminal, create a fifo <pre>mkfifo /path/to/fifo.pcap</pre>
+*** Open Foren6. Set the /path/to/fifo.pcap as source (Manage Sources --> Browse to the fifo.pcap, set PCAP type, do not set the channel)
+*** Start the capture in Foren6
+*** Launch the "*rftestrx2pcap.py from libmc1322x*":https://github.com/malvira/libmc1322x/blob/master/tools/rftestrx2pcap.py <pre>cd ..
+./tests/rftestrx2pcap.py /dev/ttyUSB1 24 /path/to/fifo.pcap</pre>
+** *Atmel RZUSBSTICK*
+*** Coming soon
+** *Microchip ZENA*
+*** Coming soon
+** ...
 
 h3. 2. Analysing previously-recorded packet traces
 
-todo
+For instructions, please follow "*Example 1*":example1.html
 
 h3. 3. Analysing a simulated network
 
-todo
+A COOJA network can be interfaced via the FIFO mechanism described above. This requires "*a recent patch to Contiki which has not yet been merged*":https://github.com/contiki-os/contiki/pull/475. We will update this documentation as soon as the merge is complete.
 
 h2(#NETVIS). The Network Visualizer
 
