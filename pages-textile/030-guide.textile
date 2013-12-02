@@ -33,10 +33,10 @@ cd libmc1322x/tests
 make</pre>
 *** Program the Econotag with "*rftest-rx from the tests folder*":https://github.com/malvira/libmc1322x/blob/master/tests/rftest-rx.c. Refer to the "*libmc1322x documentation*":https://github.com/malvira/libmc1322x/wiki for help on how to do that.
 *** From a terminal, create a fifo <pre>mkfifo /path/to/fifo.pcap</pre>
-*** Open Foren6. Set the /path/to/fifo.pcap as source (Manage Sources --> Browse to the fifo.pcap, set PCAP type, do not set the channel)
-*** Start the capture in Foren6
-*** Launch the "*rftestrx2pcap.py from libmc1322x*":https://github.com/malvira/libmc1322x/blob/master/tools/rftestrx2pcap.py <pre>cd ..
+*** Open Foren6. Set the /path/to/fifo.pcap as source (Manage Sources --> Browse to the fifo.pcap, set PCAP type, do not set the channel). This dialog will hang, until the next step is complete, because it expects to read a PCAP header in the FIFO. This is intended, and will be improved in the future.
+*** In a console, launch the "*rftestrx2pcap.py from libmc1322x*":https://github.com/malvira/libmc1322x/blob/master/tools/rftestrx2pcap.py <pre>cd ..
 ./tests/rftestrx2pcap.py /dev/ttyUSB1 24 /path/to/fifo.pcap</pre>
+*** Go back to Foren6 and click the *Start button*.
 ** *Atmel RZUSBSTICK*
 *** Coming soon
 ** *Microchip ZENA*
